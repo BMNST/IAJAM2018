@@ -37,6 +37,14 @@ end
 function love.keypressed(key, scancode, isrepeat)
     core.runEvent({ key = key, scancode = scancode, isrepeat = isrepeat, type = "key" })
     if not isrepeat then
-        scripts.systems.update.updatePlayer(GETPLAYER(), { x = 1, y = 0 })
+        if love.keyboard.isDown("w") then
+            scripts.systems.update.updatePlayer(GETPLAYER(), { x = 0, y = -1 })
+        elseif love.keyboard.isDown("a") then
+            scripts.systems.update.updatePlayer(GETPLAYER(), { x = -1, y = 0 })
+        elseif love.keyboard.isDown("s") then
+            scripts.systems.update.updatePlayer(GETPLAYER(), { x = 0, y = 1 })
+        elseif love.keyboard.isDown("d") then
+            scripts.systems.update.updatePlayer(GETPLAYER(), { x = 1, y = 0 })
+        end
     end
 end
