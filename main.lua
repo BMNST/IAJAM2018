@@ -27,11 +27,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    core.run("square", scripts.systems.render.squareRenderer, {})
-
-    --scripts.systems.collision.debug_draw(dt)
-    love.graphics.print(love.timer.getFPS(), 10, 10)
-    love.graphics.print(collectgarbage('count'), 50, 10)
+    main.maindraw()
 end
 
 function love.mousepressed(x, y, button)
