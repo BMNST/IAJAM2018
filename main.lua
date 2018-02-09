@@ -27,7 +27,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    main.maindraw()
+    scripts.main.maindraw()
 end
 
 function love.mousepressed(x, y, button)
@@ -35,7 +35,7 @@ function love.mousepressed(x, y, button)
 end
 
 function love.keypressed(key, scancode, isrepeat)
-    core.runEvent({ key = key, scancode = scancode, isrepeat = isrepeat, type = "key" })
+--    core.runEvent({ key = key, scancode = scancode, isrepeat = isrepeat, type = "key" })
     if not isrepeat then
         if love.keyboard.isDown("w") then
             scripts.systems.update.updatePlayer(GETPLAYER(), { x = 0, y = -1 })
