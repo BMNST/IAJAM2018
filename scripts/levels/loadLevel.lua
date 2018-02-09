@@ -13,11 +13,13 @@ local sti = require "lib.sti"
 LOADBYMAPFILE = function(mapmane)
     MAP = sti("assets/maps/nanders playground/test2.lua")
     local mainLayer = MAP.layers.main
-    for i = 0, #mainLayer.data do
+    for i in pairs(mainLayer.data) do
         if mainLayer.data[i] then
-            for j = 0, #mainLayer.data[i] do
+
+            for j in pairs (mainLayer.data[i]) do
 
                 if mainLayer.data[i][j] then
+                    print(i,j, mainLayer.data[i][j].id)
                     local id = mainLayer.data[i][j].id
                     -- cyan purple green red
 
@@ -32,6 +34,16 @@ LOADBYMAPFILE = function(mapmane)
                     end
                     if id == 3 then
                         scripts.objects.pressureplate(j,i,"ember")
+                        print(i,j, "EMBER")
+                    end
+                    if id == 4 then
+                        scripts.objects.player(j,i)
+                    end
+                    if id == 5 then
+                        scripts.objects.endNode(j,i)
+                    end
+                    if id == 6 then
+                        scripts.objects.wall(j,i)
                     end
                 end
             end
@@ -39,5 +51,5 @@ LOADBYMAPFILE = function(mapmane)
     end
 end
 return function(levelString)
-    LOADBYMAPFILE("assets/maps/nanders playground/test2.lua")
+    scripts.levels.scripts.testLevel()
 end

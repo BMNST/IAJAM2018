@@ -7,5 +7,7 @@
 --
 
 return function()
+    LOADBYMAPFILE("assets/maps/nanders playground/test2.lua")
+    scripts.objects.door(6,7,"ember")
 
 end

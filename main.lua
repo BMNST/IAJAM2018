@@ -14,9 +14,7 @@ end
 function love.load()
     require 'scripts'
 
-    core.entity.add({ position = { x = 2, y = 1 }, color = { R = 128, G = 128, B = 0 }, player = true })
-    core.entity.add({ position = { x = 5, y = 1 }, color = { R = 0, G = 128, B = 128 }, unwalkable = true })
-    core.entity.add({ position = { x = 6, y = 6 }, color = { R = 128, G = 0, B = 0 }, ember = "print" })
+
     scripts.levels.loadLevel(levelString)
 end
 
@@ -27,7 +25,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    MAP:draw(0,0,2,2)
+    MAP:draw(16,16,2,2)
 
     scripts.main.maindraw()
 end
