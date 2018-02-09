@@ -6,21 +6,28 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local executeColor = function(color)
-    -- Removes color from color pallete for every gamejam team
-    -- No, it executes all logic belonging to this color.
+local executeColor = scripts.actions.runActions
 
-
+local getTile = function(position)
+    for k, v in pairs(F.tiles) do
+        if v.position.x == position.x and v.position.y == position.y then
+            return v
+        end
+        return nil
+    end
 end
-
 
 return function(entity, args)
     -- args: {x = plusX, y = plusY}
-    pprint(F)
-    local newPosition = {x = entity.position.x + args.x, y= entity.position.y + args.y}
+    local newPosition = { x = entity.position.x + args.x, y = entity.position.y + args.y }
     if not scripts.systems.collision.mapCollision(newPosition) then
         print("UNWALKABLE")
         return
     end
+
     entity.position = newPosition
+    local tile = getTile(entity.position)
+    if tile then
+        executeColor(tile.tileColor)
+    end
 end
