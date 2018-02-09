@@ -13,7 +13,6 @@ end
 
 -- Run actions for certain color.
 return function(color)
-    print(color)
     core.run(color, runSingleAction, color)
 end
 
