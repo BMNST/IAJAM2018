@@ -22,6 +22,7 @@ function love.load()
 end
 
 function love.update(dt)
+    require("lib.lovebird").update()
     scripts.main.mainloop(dt)
 end
 
