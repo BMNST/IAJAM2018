@@ -1,6 +1,3 @@
 return function(a)
-    print("-------------------")
-    print(a)
-    print(require 'lib.inspect'(a))
-    print("-------------------")
+    print("-------------------\n " .. tostring(a) .. "\n" .. (require 'lib.inspect'(a)) .. "\n-------------------")
 end

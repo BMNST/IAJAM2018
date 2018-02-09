@@ -8,7 +8,6 @@
 require "scripts.actions.printAction"
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, color)
-
     ACTIONLOOKUPLIST[object[color]](object)
 end
 

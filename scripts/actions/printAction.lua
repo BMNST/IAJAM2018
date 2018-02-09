@@ -6,5 +6,8 @@
 -- To change this template use File | Settings | File Templates.
 --
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
+
+
+
 local a = function(str, func) ACTIONLOOKUPLIST[str] = func end
-a("print", function(a) print(a) end)
+a("print", function(a) pprint(a) end)
