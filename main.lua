@@ -17,21 +17,23 @@ function love.load()
     core.entity.add({ position = { x = 2, y = 1 }, color = { R = 128, G = 128, B = 0 }, player = true })
     core.entity.add({ position = { x = 5, y = 1 }, color = { R = 0, G = 128, B = 128 }, unwalkable = true })
     core.entity.add({ position = { x = 6, y = 6 }, color = { R = 128, G = 0, B = 0 }, ember = "print" })
-    core.entity.add({ position = { x = 3, y = 1 }, color = { R = 64, G = 0, B = 0 }, tileColor = "ember" })
-
+    scripts.levels.loadLevel(levelString)
 end
 
 function love.update(dt)
     require("lib.lovebird").update()
     scripts.main.mainloop(dt)
+    MAP:update(dt)
 end
 
 function love.draw()
-    core.run("square", scripts.systems.render.squareRenderer, {})
+    MAP:draw(0,0,2,2)
 
     --scripts.systems.collision.debug_draw(dt)
     love.graphics.print(love.timer.getFPS(), 10, 10)
     love.graphics.print(collectgarbage('count'), 50, 10)
+    core.run("square", scripts.systems.render.squareRenderer, {})
+
 end
 
 function love.mousepressed(x, y, button)
