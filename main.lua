@@ -5,11 +5,17 @@ require 'lib.load_all_scripts'
 
 SQUARESIZE = 32
 
+function GETPLAYER()
+    for k, v in pairs(F.player) do
+        return v
+    end
+end
+
 function love.load()
     require 'scripts'
 
-    core.entity.add({ position = { x = 2, y = 1 } })
-    print("HOI")
+    core.entity.add({ position = { x = 2, y = 1 }, color = { R = 128, G = 128, B = 0 }, player = true })
+    core.entity.add({ position = { x = 5, y = 1 }, color = { R = 0, G = 128, B = 128 }, unwalkable = true })
 end
 
 function love.update(dt)
@@ -30,4 +36,7 @@ end
 
 function love.keypressed(key, scancode, isrepeat)
     core.runEvent({ key = key, scancode = scancode, isrepeat = isrepeat, type = "key" })
+    if not isrepeat then
+        scripts.systems.update.updatePlayer(GETPLAYER(), { x = 1, y = 0 })
+    end
 end
