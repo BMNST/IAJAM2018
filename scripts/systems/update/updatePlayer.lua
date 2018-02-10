@@ -13,8 +13,8 @@ local getTile = function(position)
         if v.position.x == position.x and v.position.y == position.y then
             return v
         end
-        return nil
     end
+    return nil
 end
 
 return function(entity, args)

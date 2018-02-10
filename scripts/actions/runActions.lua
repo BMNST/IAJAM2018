@@ -6,6 +6,8 @@
 -- To change this template use File | Settings | File Templates.
 --
 require "scripts.actions.printAction"
+require "scripts.actions.toggleDoor"
+
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, color)
     ACTIONLOOKUPLIST[object[color]](object)

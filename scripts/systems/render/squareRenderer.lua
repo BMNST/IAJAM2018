@@ -8,5 +8,6 @@
 
 return function(entity, args)
     love.graphics.setColor(entity.color.R, entity.color.G, entity.color.B)
-    love.graphics.rectangle( "fill", entity.position.x*SQUARESIZE, entity.position.y*SQUARESIZE, SQUARESIZE, SQUARESIZE )
+    love.graphics.rectangle("fill", entity.position.x * SQUARESIZE, entity.position.y * SQUARESIZE, SQUARESIZE, SQUARESIZE)
+    love.graphics.setColor(255, 255, 255)
 end
