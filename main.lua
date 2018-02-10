@@ -12,6 +12,7 @@ function GETPLAYER()
 end
 
 function love.load()
+    MAPTEXTUREATLAS= love.graphics.newImage("assets/tileset/tileset.png")
     require 'scripts'
 
 
@@ -47,4 +48,5 @@ function love.keypressed(key, scancode, isrepeat)
             scripts.systems.update.updatePlayer(GETPLAYER(), { x = 1, y = 0 })
         end
     end
+
 end
