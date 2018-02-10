@@ -8,8 +8,8 @@
 
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 local a = function(str, func) ACTIONLOOKUPLIST[str] = func end
-a("toggleDoor",
+a("toggleLaser",
     function(a)
-        scripts.actions.startActions.toggleDoor(a)
+        scripts.actions.startActions.toggleLaser(a)
 
     end)

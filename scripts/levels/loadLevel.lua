@@ -19,7 +19,6 @@ LOADBYMAPFILE = function(mapmane)
             for j in pairs (mainLayer.data[i]) do
 
                 if mainLayer.data[i][j] then
-                    print(i,j, mainLayer.data[i][j].id)
                     local id = mainLayer.data[i][j].id
                     -- cyan purple green red
 
@@ -34,7 +33,6 @@ LOADBYMAPFILE = function(mapmane)
                     end
                     if id == 3 then
                         scripts.objects.pressureplate(j,i,"ember")
-                        print(i,j, "EMBER")
                     end
                     if id == 4 then
                         scripts.objects.player(j,i)

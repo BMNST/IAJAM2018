@@ -11,5 +11,13 @@ a("endNode", { "position.x", "position.y", "endNode" })
 a("tiles", { "position.x", "position.y", "tileColor" })
 a("tileToImage", { "position.x", "position.y", "tileSpriteName" })
 
+
+a("turret", {"isTurret", "position.x", "position.y", "orientation"})
+
 a("persistent", { "persistent" })
 a("nonPersistent", { "-persistent" })
+
+a("behaves", {"behavior"})
+a("moveAction", {"behavior.actions.move"})
+a("rotationAction", {"behavior.actions.rotate"})
+a("toggleDoorAction", {"behavior.actions.toggleDoor"})
