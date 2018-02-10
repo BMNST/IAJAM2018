@@ -1,9 +1,7 @@
 local ctx = GS.new()
 
 function ctx:enter()
-    MAPTEXTUREATLAS= love.graphics.newImage("assets/tileset/tileset.png")
     print("Entered " .. self.name)
-    core.entity.push()
     ctx.from = from
 end
 
@@ -13,7 +11,7 @@ end
 
 function ctx:draw()
     love.graphics.setColor(255, 255, 255)
-    love.graphics.print("1 : Level 1\n2 : NULL\n3 : NULL\n4 : NULL", 200, 200, 0, 3, 3)
+    love.graphics.print("1 : Level 1\n2 : Cutscene\n3 : NULL\n4 : NULL", 200, 200, 0, 3, 3)
 
     --scripts.systems.collision.debug_draw()
     love.graphics.print(love.timer.getFPS(), 10, 10)
@@ -25,7 +23,7 @@ function ctx:keypressed(key, scancode, isrepeat)
         if love.keyboard.isDown("1") then
             GS.push(scripts.gamestates.game, "testLevel")
         elseif love.keyboard.isDown("2") then
-            GS.push(scripts.gamestates.game, level2)
+            GS.push(scripts.gamestates.cutscene)
         elseif love.keyboard.isDown("3") then
             GS.push(scripts.gamestates.game, level3)
         elseif love.keyboard.isDown("4") then
@@ -37,7 +35,6 @@ function ctx:keypressed(key, scancode, isrepeat)
 end
 
 function ctx:leave()
-    core.entity.pop()
     print('Leaving ' .. self.name)
 end
 
