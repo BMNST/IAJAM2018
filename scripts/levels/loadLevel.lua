@@ -50,6 +50,11 @@ LOADBYMAPFILE = function(mapmane)
         end
     end
 end
+RESETLEVEL = function(object)
+    core.entity.remove(object)
+end
 return function(levelString)
-    scripts.levels.scripts.testLevel()
+    core.run("nonPersistent", RESETLEVEL, {})
+
+    scripts.levels.scripts[levelString]()
 end

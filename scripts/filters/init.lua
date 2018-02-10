@@ -9,5 +9,7 @@ a("unwalkable", { "position.x", "position.y", "unwalkable" })
 a("player", { "position.x", "position.y", "player" })
 a("endNode", { "position.x", "position.y", "endNode" })
 a("tiles", { "position.x", "position.y", "tileColor" })
+a("tileToImage", { "position.x", "position.y", "tileSpriteName" })
+
 a("persistent", { "persistent" })
 a("nonPersistent", { "-persistent" })

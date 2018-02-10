@@ -8,6 +8,6 @@
 
 return function(x,y,color)
     print(x,y,color)
-    core.entity.add({ position = { x = x, y = y }, color = { R = 64, G = 0, B = 0 }, tileColor = color })
+    core.entity.add({ position = { x = x, y = y }, color = { R = 64, G = 0, B = 0 }, tileColor = color, tileSpriteName = color.."Tile" })
 end
 
