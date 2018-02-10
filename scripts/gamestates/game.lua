@@ -22,7 +22,7 @@ function ctx:update(dt)
     if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
         scripts.actions.playerDeathCheck()
     end
-    for k, v in ipairs({ "cyan", "green", "ember", "purple", "red" }) do
+    for k, v in ipairs({ "cyan", "green", "ember", "purple", "yellow" }) do
         if _G["FLASH" .. v] then
             _G["FLASH" .. v] = _G["FLASH" .. v] - dt
             if _G["FLASH" .. v] < 0 then

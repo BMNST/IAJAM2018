@@ -6,16 +6,14 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+-- ember, purple, cyan, green, yellow
+
 return function()
     LOADBYMAPFILE("assets/maps/tims playground/test.lua")
-    scripts.objects.door(20, 20, )
-    scripts.objects.door(6, 8, true, "toggleDoor")
-    --scripts.objects.movingBlock(14, 14, "moveLeft", "moveRight", "moveUp", "moveDown")
-    scripts.objects.turret(6, 10, 2, "rotateLeft", { "toggleLaser", "resetRotation1" })
-    scripts.objects.trapDoor(6, 9, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(13, 14, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(14, 13, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(15, 14, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(14, 15, false, "toggleDoor", "toggleDoor")
-
+    scripts.objects.door(20, 10, true, true, "toggleDoor", nil, nil, nil, nil)
+    scripts.objects.door(24, 10, false, true, nil, "toggleDoor", nil, nil, nil)
+    scripts.objects.door(28, 17, false, true, nil, nil, nil, nil, "toggleDoor")
+    scripts.objects.turret(22, 15, 0, false, nil, nil, nil, "rotateLeft", "toggleLaser")
+    scripts.objects.turret(26, 16, -1, true, "toggleLaser", nil, nil, nil, "toggleLaser")
+    scripts.objects.turret(26, 18, -1, true, "toggleLaser", "toggleLaser", "toggleLaser", "toggleLaser", "toggleLaser")
 end

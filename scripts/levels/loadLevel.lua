@@ -44,7 +44,7 @@ LOADBYMAPFILE = function(mapmane)
                         scripts.objects.wall(j,i)
                     end
                     if id == 7 then
-                        scripts.objects.wall(j, i, "yellow")
+                        scripts.objects.pressureplate(j, i, "yellow")
                     end
                 end
             end

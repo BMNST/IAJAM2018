@@ -30,4 +30,7 @@ return function(a, args)
         core.filter.update(a)
 
     end
+    if a.rotated then
+        a.tileSpriteName = a.tileSpriteName .. "Rotated"
+    end
 end
