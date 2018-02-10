@@ -6,20 +6,17 @@ function ctx:enter(from, level)
     ctx.from = from
     require 'scripts'
 
-    -- load level
-    core.entity.add({ position = { x = 2, y = 1 }, color = { R = 128, G = 128, B = 0 }, player = true })
-    core.entity.add({ position = { x = 5, y = 1 }, color = { R = 0, G = 128, B = 128 }, unwalkable = true })
-    core.entity.add({ position = { x = 6, y = 6 }, color = { R = 128, G = 0, B = 0 }, ember = "print" })
-    core.entity.add({ position = { x = 3, y = 1 }, color = { R = 64, G = 0, B = 0 }, tileColor = "ember" })
+    scripts.levels.loadLevel(levelString)
 end
 
 
 function ctx:update(dt)
     require("lib.lovebird").update()
+    MAP:update(dt)
 end
 
 function ctx:draw()
-    core.run("square", scripts.systems.render.squareRenderer, {})
+    MAP:draw(16,16,2,2)
 
     --scripts.systems.collision.debug_draw()
     love.graphics.print(love.timer.getFPS(), 10, 10)
