@@ -8,7 +8,7 @@
 
 return function()
     LOADBYMAPFILE("assets/maps/nanders playground/test2.lua")
-    scripts.objects.door(6,8,"toggleDoor")
-    scripts.objects.movingBlock(14,14,"moveLeft", "moveRight", "moveUp", "moveDown")
-    scripts.objects.turret(6,10,2, "rotateLeft", {"toggleLaser","resetRotation1"})
+    scripts.objects.door(6, 8, "toggleDoor")
+    scripts.objects.movingBlock(14, 14, "moveLeft", "moveRight", "moveUp", "moveDown")
+    scripts.objects.turret(6, 10, 2, "rotateLeft", { "toggleLaser", "resetRotation1" })
 end
