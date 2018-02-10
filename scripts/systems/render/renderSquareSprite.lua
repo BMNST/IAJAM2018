@@ -6,8 +6,12 @@
 -- To change this template use File | Settings | File Templates.
 --
 local quads = {}
-quads.emberTile = {1,7}
+
+quads.cyanTile = {1,5 }
+quads.greenTile = {1,8 }
+quads.emberTile = {1,11 }
+quads.purpleTile = {1,14}
 return function(entity, args)
 
-    love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(unpack(quads[entity.tileSpriteName] or {1,1})), entity.position.x * SQUARESIZE, entity.position.y * SQUARESIZE)
+    love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(unpack(quads[entity.tileSpriteName] or {1,1})), entity.position.x * SQUARESIZE, entity.position.y * SQUARESIZE, 0,2,2)
 end
