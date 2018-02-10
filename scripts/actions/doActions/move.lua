@@ -1,12 +1,10 @@
 --
 -- Created by IntelliJ IDEA.
 -- User: nander
--- Date: 09/02/2018
--- Time: 19:47
+-- Date: 10/02/2018
+-- Time: 10:42
 -- To change this template use File | Settings | File Templates.
 --
-
-local executeColor = scripts.actions.runActions
 
 core.getTile = function(position, list)
     for k, v in pairs(list) do
@@ -18,7 +16,8 @@ core.getTile = function(position, list)
 end
 
 return function(entity, args)
-    -- args: {x = plusX, y = plusY}
+    local executeColor = scripts.actions.runActions
+
     local newPosition = { x = entity.position.x + args.x, y = entity.position.y + args.y }
     if not scripts.systems.collision.mapCollision(newPosition) then
         print("UNWALKABLE")

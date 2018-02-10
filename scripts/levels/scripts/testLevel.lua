@@ -10,5 +10,6 @@ return function()
     LOADBYMAPFILE("assets/maps/nanders playground/test2.lua")
     scripts.objects.door(6,8,"ember")
     scripts.objects.movingBlock(14,14,"ember", "cyan", "green", "purple")
+    scripts.objects.turret(6,10,2)
 
 end

@@ -8,7 +8,7 @@
 require "scripts.actions.printAction"
 require "scripts.actions.toggleDoor"
 require "scripts.actions.moveAction"
-
+require "scripts.actions.rotateAction"
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, color)
     ACTIONLOOKUPLIST[object[color]](object)

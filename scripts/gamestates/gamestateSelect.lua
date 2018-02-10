@@ -3,7 +3,6 @@ local ctx = GS.new()
 function ctx:enter()
     MAPTEXTUREATLAS= love.graphics.newImage("assets/tileset/tileset.png")
     print("Entered " .. self.name)
-    core.entity.push()
     ctx.from = from
 end
 
@@ -37,7 +36,6 @@ function ctx:keypressed(key, scancode, isrepeat)
 end
 
 function ctx:leave()
-    core.entity.pop()
     print('Leaving ' .. self.name)
 end
 

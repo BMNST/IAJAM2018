@@ -15,26 +15,26 @@ a("moveLeft", function(a)
     if not scripts.systems.collision.mapCollision(pos) then
         return
     end
-    a.position = pos
+    scripts.actions.startActions.move(a, { x = -1, y = 0 })
 end)
 a("moveRight", function(a)
     local pos = { x = a.position.x + 1, y = a.position.y }
     if not scripts.systems.collision.mapCollision(pos) then
         return
     end
-    a.position = pos
+    scripts.actions.startActions.move(a, { x = 1, y = 0 })
 end)
 a("moveUp", function(a)
     local pos = { x = a.position.x , y = a.position.y - 1 }
     if not scripts.systems.collision.mapCollision(pos) then
         return
     end
-    a.position = pos
+    scripts.actions.startActions.move(a, { x = 0, y = -1 })
 end)
 a("moveDown", function(a)
     local pos = { x = a.position.x, y = a.position.y + 1 }
     if not scripts.systems.collision.mapCollision(pos) then
         return
     end
-    a.position = pos
+    scripts.actions.startActions.move(a, { x = 0, y = 1 })
 end)
