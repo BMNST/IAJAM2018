@@ -12,7 +12,8 @@ return function(entity, args)
         print("UNWALKABLE")
         return
     end
-
-    entity.behavior = { actions={move = args}, startTime = 0.05, time = 0.05 }
+    local c = (entity.behavior and entity.behavior.actions) or {}
+    c.move = args
+    entity.behavior = { actions=c, startTime = 0.05, time = 0.05 }
     core.filter.update(entity)
 end

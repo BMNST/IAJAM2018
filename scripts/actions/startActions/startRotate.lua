@@ -8,6 +8,8 @@
 
 return function(entity, args)
     -- args: 1 for right, -1 for left.
-    entity.behavior = { actions={rotate = args}, startTime = 0.05, time = 0.05 }
+    local c = (entity.behavior and entity.behavior.actions) or {}
+    c.rotate = args
+    entity.behavior = { actions=c, startTime = 0.05, time = 0.05 }
     core.filter.update(entity)
 end

@@ -9,9 +9,18 @@ require "scripts.actions.printAction"
 require "scripts.actions.toggleDoor"
 require "scripts.actions.moveAction"
 require "scripts.actions.rotateAction"
+require "scripts.actions.toggleLaser"
+
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, color)
-    ACTIONLOOKUPLIST[object[color]](object)
+    if type(object[color]) == "string" then
+        ACTIONLOOKUPLIST[object[color]](object)
+    else
+        for k, v in ipairs(object[color]) do
+            ACTIONLOOKUPLIST[v](object)
+
+        end
+    end
 end
 
 -- Run actions for certain color.

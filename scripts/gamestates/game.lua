@@ -13,7 +13,6 @@ function ctx:update(dt)
     MAP:update(dt)
 
     for k, v in pairs(F.behaves) do
-        pprint(v)
         v.behavior.time = v.behavior.time - dt
         if v.behavior.time < 0 then
             scripts.actions.doActions.execute(v)

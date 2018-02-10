@@ -20,6 +20,9 @@ local turretFunc = function(entity)
     elseif o == 4 then
         orr.y = -1
     end
+    if not entity.laserOn then
+        return
+    end
     for i = 1, 10 do
         local loc = { x = entity.position.x + orr.x * i, y = entity.position.y + orr.y * i }
         if not scripts.systems.collision.mapCollision(loc) then

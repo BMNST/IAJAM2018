@@ -14,8 +14,8 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-return function(x,y,color)
-    core.entity.add({ position = { x = x, y = y }, color = { R = 0, G = 0, B = 128 }, [color] = "toggleDoor", open= false })
+return function(x,y, ember, purple, cyan, green, yellow)
+    core.entity.add({ position = { x = x, y = y }, color = { R = 0, G = 0, B = 128 }, open= false , ember =  ember, purple = purple, cyan = cyan, green = green, yellow = yellow})
 end
 
 
