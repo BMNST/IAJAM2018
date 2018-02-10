@@ -8,8 +8,8 @@
 
 local executeColor = scripts.actions.runActions
 
-local getTile = function(position)
-    for k, v in pairs(F.tiles) do
+core.getTile = function(position, list)
+    for k, v in pairs(list) do
         if v.position.x == position.x and v.position.y == position.y then
             return v
         end
@@ -26,8 +26,13 @@ return function(entity, args)
     end
 
     entity.position = newPosition
-    local tile = getTile(entity.position)
+    local tile = core.getTile(entity.position, F.tiles)
     if tile then
         executeColor(tile.tileColor)
+    end
+    local tile = core.getTile(entity.position, F.endNode)
+    if tile  then
+        print("HERE")
+        scripts.levels.loadLevel("testLevel")
     end
 end

@@ -15,7 +15,7 @@ function love.load()
     require 'scripts'
 
 
-    scripts.levels.loadLevel(levelString)
+    scripts.levels.loadLevel("testLevel")
 end
 
 function love.update(dt)

@@ -7,6 +7,7 @@
 --
 require "scripts.actions.printAction"
 require "scripts.actions.toggleDoor"
+require "scripts.actions.moveAction"
 
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, color)
