@@ -1,6 +1,7 @@
 local ctx = GS.new()
 
 function ctx:enter()
+    MAPTEXTUREATLAS= love.graphics.newImage("assets/tileset/tileset.png")
     print("Entered " .. self.name)
     core.entity.push()
     ctx.from = from
@@ -22,7 +23,7 @@ end
 function ctx:keypressed(key, scancode, isrepeat)
     if not isrepeat then
         if love.keyboard.isDown("1") then
-            GS.push(scripts.gamestates.game, level1)
+            GS.push(scripts.gamestates.game, "testLevel")
         elseif love.keyboard.isDown("2") then
             GS.push(scripts.gamestates.game, level2)
         elseif love.keyboard.isDown("3") then

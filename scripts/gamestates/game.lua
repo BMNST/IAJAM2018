@@ -4,9 +4,8 @@ function ctx:enter(from, level)
     print("Entered " .. self.name)
     core.entity.push()
     ctx.from = from
-    require 'scripts'
 
-    scripts.levels.loadLevel(levelString)
+    scripts.levels.loadLevel(level)
 end
 
 
@@ -17,7 +16,13 @@ end
 
 function ctx:draw()
     MAP:draw(16,16,2,2)
+    core.run("square", scripts.systems.render.squareRenderer, {})
+    core.run("tileToImage", scripts.systems.render.renderSquareSprite, {})
 
+    --scripts.systems.collision.debug_draw()
+    love.graphics.print(love.timer.getFPS(), 10, 10)
+    love.graphics.print(collectgarbage('count'), 50, 10)
+    scripts.systems.render.renderPlayer(GETPLAYER())
     --scripts.systems.collision.debug_draw()
     love.graphics.print(love.timer.getFPS(), 10, 10)
     love.graphics.print(collectgarbage('count'), 50, 10)
