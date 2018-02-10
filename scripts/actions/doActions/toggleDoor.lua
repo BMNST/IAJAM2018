@@ -11,15 +11,23 @@ return function(a, args)
     print(a.open, a.color.B)
     if a.open then
         a.color.B = 128
-        a.unwalkable = nil
         a.tileSpriteName = "openDoor"
-        core.filter.update(a)
-
     end
     if not a.open then
         a.color.B = 255
-        a.unwalkable = true
+
         a.tileSpriteName = "closedDoor"
+
+    end
+    if a.trapdoor then
+        a.tileSpriteName = "trap" .. a.tileSpriteName
+    else
+        if a.open then
+            a.unwalkable = nil
+        else
+            a.unwalkable = true
+        end
         core.filter.update(a)
+
     end
 end

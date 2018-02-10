@@ -36,4 +36,14 @@ return function(entity, args)
             scripts.levels.loadLevel("testLevel")
         end
     end
+
+    local tile = core.getTile(entity.position, F.trapdoor)
+    if tile then
+        if entity == GETPLAYER() then
+            -- death code
+        else
+            print("DESTROY")
+            core.entity.remove(entity)
+        end
+    end
 end

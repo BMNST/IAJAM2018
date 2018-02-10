@@ -24,5 +24,5 @@ a("rotationAction", {"behavior.actions.rotate"})
 a("toggleDoorAction", {"behavior.actions.toggleDoor"})
 
 
-a("trapDoor", {"trapDoor"})
+a("trapdoor", {"trapdoor"})
 a("movingBlock", {"movingBlock"})
