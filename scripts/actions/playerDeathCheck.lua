@@ -35,6 +35,13 @@ local turretFunc = function(entity)
         end
     end
 end
+
+local checkTrapDoors = function(entity)
+    local p = GETPLAYER()
+    if  entity.position.x ==p.position.x and entity.position.y == p.position.y and entity.open then
+        scripts.actions.startActions.death(player)
+    end
+end
 return function()
     core.run("turret", turretFunc, {})
 

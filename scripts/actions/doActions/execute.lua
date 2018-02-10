@@ -19,7 +19,6 @@ return function(object)
     object.behavior = nil
     core.filter.update(object)
     for k,v in pairs(behave.actions) do
-
         scripts.actions.doActions[ACTS[k]](object, v)
     end
 end

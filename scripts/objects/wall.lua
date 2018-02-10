@@ -14,7 +14,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-return function(x,y,color)
+return function(x,y)
     core.entity.add({ position = { x = x, y = y }, color = { R = 128, G = 128, B = 128 }, unwalkable = true})
 end
 

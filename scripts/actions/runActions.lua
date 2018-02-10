@@ -25,6 +25,7 @@ end
 
 -- Run actions for certain color.
 return function(color)
+    _G["FLASH"..color] = 0.1
     core.run(color, runSingleAction, color)
 end
 

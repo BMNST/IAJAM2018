@@ -29,9 +29,11 @@ return function(entity, args)
     if tile then
         executeColor(tile.tileColor)
     end
+
     local tile = core.getTile(entity.position, F.endNode)
-    if tile  then
-        print("HERE")
-        scripts.levels.loadLevel("testLevel")
+    if entity == GETPLAYER() then
+        if tile then
+            scripts.levels.loadLevel("testLevel")
+        end
     end
 end

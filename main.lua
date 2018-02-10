@@ -13,6 +13,7 @@ require 'lib.load_all_scripts'
 SQUARESIZE = 32
 
 function love.load()
+    love.graphics.setDefaultFilter("nearest")
     GS.registerEvents()
     GS.push(scripts.gamestates.gamestateSelect)
 end

@@ -16,7 +16,18 @@ function ctx:update(dt)
         v.behavior.time = v.behavior.time - dt
         if v.behavior.time < 0 then
             scripts.actions.doActions.execute(v)
-            scripts.actions.playerDeathCheck()
+        end
+    end
+
+    if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
+        scripts.actions.playerDeathCheck()
+    end
+    for k, v in ipairs({ "cyan", "green", "ember", "purple", "red" }) do
+        if _G["FLASH" .. v] then
+            _G["FLASH" .. v] = _G["FLASH" .. v] - dt
+            if _G["FLASH" .. v] < 0 then
+                _G["FLASH" .. v] = nil
+            end
         end
     end
 end
@@ -25,6 +36,7 @@ function ctx:draw()
     MAP:draw(16, 16, 2, 2)
     --core.run("square", scripts.systems.render.squareRenderer, {})
     core.run("tileToImage", scripts.systems.render.renderSquareSprite, {})
+
     core.run("turret", scripts.systems.render.renderLaser, {})
 
     --scripts.systems.collision.debug_draw()
@@ -37,13 +49,18 @@ function ctx:draw()
     if (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
         love.graphics.print("YOU HAVE DIED", 200, 200)
     end
+    core.run("movingBlock", scripts.systems.render.renderMovingBlock, {})
 end
 
 function ctx:keypressed(key, scancode, isrepeat)
-    for k, v in pairs(F.behaves) do
-        return
-    end
+
     if not isrepeat then
+        if love.keyboard.isDown("r") then
+            scripts.levels.loadLevel(LEVEL)
+        end
+        for k, v in pairs(F.behaves) do
+            return
+        end
         if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
             if love.keyboard.isDown("w") then
                 scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1 })
