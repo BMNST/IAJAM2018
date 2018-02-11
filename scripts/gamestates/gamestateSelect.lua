@@ -6,7 +6,7 @@ local order = {
     { cutscene = { s = 1, e = 3 } },
     { wait = true },
     { cutscene = { s = 5, e = 16 } },
-    { level = "disco" },
+    { level = "credits" },
     { cutscene = { s = 18, e = 21 } },
     { level = "painkillers" },
     { cutscene = { s = 23, e = 29 } },
