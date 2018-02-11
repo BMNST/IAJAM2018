@@ -10,9 +10,14 @@
 
 return function()
     LOADBYMAPFILE("assets/maps/final/stoppingLasers.lua")
-    scripts.objects.door(21, 12, false, false, "toggleDoor", nil, nil, nil, nil)
-    scripts.objects.turret(20, 13, 3, true, nil, "rotateLeft", "rotateRight", nil, nil)
-    scripts.objects.turret(21, 14, 2, true, nil, "rotateLeft", "rotateRight", nil, nil)
-    scripts.objects.turret(26, 13, 3, true, nil, "rotateLeft", "rotateRight", nil, nil)
+
+    scripts.objects.door(21, 12, false, false, nil, "toggleDoor", nil, nil, nil)
+
+    scripts.objects.turret(20, 13, 3, true, nil, nil, nil, nil, nil)
+    scripts.objects.turret(21, 14, 2, true, nil, nil, nil, nil, nil)
+    scripts.objects.turret(26, 13, 3, true, nil, nil, nil, nil, nil)
+
+    scripts.objects.movingBlock(19, 12, "moveDown", nil, "moveUp", "moveRight", nil)
+    scripts.objects.movingBlock(27, 17, "moveDown", nil, "moveUp", "moveRight", nil)
 end
 
