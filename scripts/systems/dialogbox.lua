@@ -4,8 +4,7 @@ local lines = {}
 local i = 1
 
 a.draw = function()
-    local rT = scripts.systems.render.renderText
-    rT.renderText(lines[i], { x = 200, y = 200 }, 25)
+    scripts.systems.render.renderText.renderText(lines[i], { x = 200, y = 200 }, 25)
 end
 
 a.set = function(index)
