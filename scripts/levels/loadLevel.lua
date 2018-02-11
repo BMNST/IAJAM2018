@@ -56,6 +56,7 @@ RESETLEVEL = function(object)
 end
 return function(levelString)
     core.run("nonPersistent", RESETLEVEL, {})
+    print(levelString)
 
     scripts.levels.scripts[levelString]()
 end
