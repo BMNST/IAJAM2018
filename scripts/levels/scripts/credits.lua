@@ -7,7 +7,7 @@
 --
 
 return function()
-    LOADBYMAPFILE("assets/maps/nanmaps/cubetransporter.lua")
+    LOADBYMAPFILE("assets/maps/final/credits.lua")
 
     local b = scripts.objects.movingBlock(2, 2, "moveLeft", "moveDown", "moveUp", "moveRight")
     scripts.actions.startActions.move(b, { x = 1, y = 0 })
