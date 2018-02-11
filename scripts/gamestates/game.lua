@@ -65,9 +65,10 @@ function ctx:keypressed(key, scancode, isrepeat)
         if love.keyboard.isDown("r") then
             scripts.levels.loadLevel(LEVEL)
         end
-        if love.keyboard.isDown("escape") then
-            GS.pop()
-        end
+        
+--        if love.keyboard.isDown("escape") then
+--            GS.pop()
+--        end
         for k, v in pairs(F.behaves) do
             return
         end
