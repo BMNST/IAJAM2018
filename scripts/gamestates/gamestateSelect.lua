@@ -25,7 +25,8 @@ function ctx:keypressed(key, scancode, isrepeat)
         elseif love.keyboard.isDown("2") then
             GS.push(scripts.gamestates.cutscene, "testCutscene", 1, 5)
         elseif love.keyboard.isDown("3") then
-            GS.push(scripts.gamestates.game, level3)
+            GS.push(scripts.gamestates.game, "credits")
+            GS.push(scripts.gamestates.game, "credits")
         elseif love.keyboard.isDown("4") then
             GS.push(scripts.gamestates.game, "testTim")
         elseif love.keyboard.isDown("escape") then

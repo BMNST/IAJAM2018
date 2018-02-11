@@ -58,6 +58,9 @@ function ctx:keypressed(key, scancode, isrepeat)
         if love.keyboard.isDown("r") then
             scripts.levels.loadLevel(LEVEL)
         end
+        if love.keyboard.isDown("escape") then
+            GS.pop()
+        end
         for k, v in pairs(F.behaves) do
             return
         end
@@ -70,8 +73,6 @@ function ctx:keypressed(key, scancode, isrepeat)
                 scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 })
             elseif love.keyboard.isDown("d") then
                 scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 })
-            elseif love.keyboard.isDown("escape") then
-                GS.pop()
             end
         end
     end

@@ -8,7 +8,7 @@
 
 return function()
     LOADBYMAPFILE("assets/maps/nanmaps/cubetransporter.lua")
-    scripts.objects.door(17, 7, true, false, nil, "closeDoor")
+    --ember, purple, cyan, green, yellow
 
     scripts.objects.door(24, 12, true, false, nil, "closeDoor")
     scripts.objects.door(24, 17, false, false, nil, "openDoor")
