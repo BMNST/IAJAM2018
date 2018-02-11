@@ -3,21 +3,24 @@ local ctx = GS.new()
 local toLevel = true
 
 local order = {
-    { cutscene = { s = 1, e = 3 } },
+    { cutscene = { s = 1 } },
     { wait = true },
-    { cutscene = { s = 5, e = 16 } },
-    { level = "disco" },
-    { cutscene = { s = 18, e = 21 } },
+    { cutscene = { s = 4 } },
+    { level = "hungover" },
+    { cutscene = { s = 18 } },
     { level = "painkillers" },
-    { cutscene = { s = 23, e = 29 } },
+    { cutscene = { s = 23 } },
     { level = "trapDoors" },
-    { cutscene = { s = 31, e = 37 } },
     { level = "cubeTransporter" },
-    { cutscene = { s = 39, e = 102 } },
+    { cutscene = { s = 39 } },
+    { level = "stoppingLasers" },
+    { cutscene = { s = 39 } },
     { level = "turretLevel" },
-    { cutscene = { s = 104, e = 175 } },
+    { cutscene = { s = 104 } },
     { level = "rainbowCookie" },
-    { cutscene = { s = 177, e = 247 } },
+    { cutscene = { s = 177 } },
+    { level = "disco" },
+    { cutscene = { s = 177 } },
     { level = "credits" },
 }
 
@@ -35,7 +38,7 @@ function ctx:update(dt)
         orderIndex = orderIndex + 1
 
         if order[orderIndex].cutscene then
-            GS.push(scripts.gamestates.cutscene, order[orderIndex].cutscene.s, order[orderIndex].cutscene.e)
+            GS.push(scripts.gamestates.cutscene, order[orderIndex].cutscene.s)
         end
         if order[orderIndex].level then
             GS.push(scripts.gamestates.game, order[orderIndex].level)

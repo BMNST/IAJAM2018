@@ -1,13 +1,11 @@
 local ctx = GS.new()
 
-local e = 0
 
-function ctx:enter(from, startIndex, endIndex)
+function ctx:enter(from, startIndex)
     print("Entered " .. self.name)
     ctx.from = from
     scripts.levels.loadLevel("testCutscene")
     scripts.systems.dialogbox.set(startIndex)
-    e = endIndex
 end
 
 function ctx:update(dt)
@@ -30,11 +28,7 @@ function ctx:keypressed(key, scancode, isrepeat)
         if love.keyboard.isDown("escape") then
             GS.pop()
         else
-            if scripts.systems.dialogbox.get() >= e then
-                GS.pop()
-            else
-                scripts.systems.dialogbox.next()
-            end
+            scripts.systems.dialogbox.next()
         end
     end
 end
