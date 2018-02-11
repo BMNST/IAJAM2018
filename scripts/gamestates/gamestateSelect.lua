@@ -4,15 +4,21 @@ local toLevel = true
 
 local order = {
     { cutscene = { s = 1, e = 3 } },
-    { wait = true},
+    { wait = true },
     { cutscene = { s = 5, e = 16 } },
     { level = "hungover" },
-    { cutscene = { s = 1, e = 10 } },
-    { cutscene = { s = 1, e = 10 } },
-    { cutscene = { s = 1, e = 10 } },
-    { cutscene = { s = 1, e = 10 } },
+    { cutscene = { s = 18, e = 21 } },
+    { level = "painkillers" },
+    { cutscene = { s = 23, e = 29 } },
+    { level = "trapDoors" },
+    { cutscene = { s = 31, e = 37 } },
+    { level = "cubeTransporter" },
+    { cutscene = { s = 39, e = 102 } },
+    { level = "turretLevel" },
+    { cutscene = { s = 104, e = 175 } },
+    { level = "rainbowCookie" },
+    { cutscene = { s = 31, e = 37 } },
     { level = "credits" },
-
 }
 
 local orderIndex = 0
@@ -36,6 +42,7 @@ function ctx:update(dt)
         end
         if order[orderIndex].wait then
             toLevel = false
+            scripts.levels.loadLevel("painkillers")
         end
     end
 end
