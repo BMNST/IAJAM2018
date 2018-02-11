@@ -17,7 +17,7 @@ local order = {
     { level = "turretLevel" },
     { cutscene = { s = 104, e = 175 } },
     { level = "rainbowCookie" },
-    { cutscene = { s = 31, e = 37 } },
+    { cutscene = { s = 177, e = 247 } },
     { level = "credits" },
 }
 
