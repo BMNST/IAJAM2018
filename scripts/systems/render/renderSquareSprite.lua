@@ -19,16 +19,20 @@ quads.purpleTileFLASH = { 1, 14 }
 quads.yellowTileFLASH = { 1, 17 }
 
 quads.openDoor = { 1, 20 }
+quads.openDoorRotated = { 4, 20 }
 quads.closedDoor = { 0, 20 }
+quads.closedDoorRotated = { 3, 20 }
 quads.movingBlock = { 2, 20 }
 
 quads.trapopenDoor = { 8, 19 }
+quads.trapopenDoorRotated = { 8, 20 }
 quads.trapclosedDoor = { 9, 19 }
+quads.trapclosedDoorRotated = { 9, 20 }
 
 return function(entity, args)
     local Q = quads[entity.tileSpriteName] or { 5, 0 }
     local n = entity.tileSpriteName
-    for k, v in ipairs({ "cyan", "green", "ember", "purple", "red" }) do
+    for k, v in ipairs({ "cyan", "green", "ember", "purple", "yellow" }) do
         if n == v .. "Tile" then
             if _G["FLASH" .. v] and _G["FLASH" .. v] > 0 then
                 Q = quads[v .. "TileFLASH"] or { 5, 0 }

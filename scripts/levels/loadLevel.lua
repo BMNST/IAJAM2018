@@ -11,7 +11,7 @@ local sti = require "lib.sti"
 --ember
 --purple
 LOADBYMAPFILE = function(mapmane)
-    MAP = sti("assets/maps/nanders playground/test2.lua")
+    MAP = sti(mapmane)
     local mainLayer = MAP.layers.main
     for i in pairs(mainLayer.data) do
         if mainLayer.data[i] then
@@ -42,6 +42,9 @@ LOADBYMAPFILE = function(mapmane)
                     end
                     if id == 6 then
                         scripts.objects.wall(j,i)
+                    end
+                    if id == 7 then
+                        scripts.objects.pressureplate(j, i, "yellow")
                     end
                 end
             end
