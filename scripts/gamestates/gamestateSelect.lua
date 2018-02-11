@@ -10,6 +10,9 @@ local order = {
     { cutscene = { s = 1, e = 10 } },
     { cutscene = { s = 1, e = 10 } },
     { cutscene = { s = 1, e = 10 } },
+    { cutscene = { s = 1, e = 10 } },
+    { level = "credits" },
+
 }
 
 local orderIndex = 0
