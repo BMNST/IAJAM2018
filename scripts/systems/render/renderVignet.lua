@@ -20,8 +20,12 @@ return function()
     end
     if id == 1 then
         love.graphics.draw(LIGHTVIGNETTE, x, y)
+        love.graphics.setColor(0, 0, 0)
+        scripts.systems.render.renderText.renderText("Controls: [MOVEMENT: WASD], [RESET: r]", { x = 80, y = 46.5 * 16 }, 16)
+        love.graphics.setColor(255, 255, 255)
     else
         love.graphics.draw(DARKVIGNETTE, x, y)
+        scripts.systems.render.renderText.renderText("Controls: [MOVEMENT: WASD], [RESET: r]", { x = 80, y = 46.5 * 16 }, 16)
+
     end
-    print("A")
 end

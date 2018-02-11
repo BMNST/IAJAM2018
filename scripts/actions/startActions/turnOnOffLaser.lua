@@ -8,7 +8,7 @@
 return function(entity, args)
     local c = (entity.behavior and entity.behavior.actions) or {}
     c.turnOnOffLaser = args
-    entity.behavior = { actions = c, startTime = 0.05, time = 0.05 }
+    entity.behavior = { actions = c, startTime = 0.03, time = 0.03 }
     core.filter.update(entity)
 end
 
