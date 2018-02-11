@@ -4,8 +4,8 @@ local toLevel = false
 
 local order = {
     {},
-    { cutscene = { s = 1, e = 10 } },
-    { level = "cubeTransporter" },
+    { cutscene = { s = 1, e = 3 } },
+    { level = "hungover" },
     { cutscene = { s = 1, e = 10 } },
     { cutscene = { s = 1, e = 10 } },
     { cutscene = { s = 1, e = 10 } },
