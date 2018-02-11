@@ -5,10 +5,12 @@ function ctx:enter(from, startIndex)
     print("Entered " .. self.name)
     ctx.from = from
     scripts.levels.loadLevel("testCutscene")
-    scripts.systems.dialogbox.set(startIndex)
 end
 
 function ctx:update(dt)
+    if DEBUG then
+        require("lib.lovebird").update()
+    end
 end
 
 function ctx:draw()

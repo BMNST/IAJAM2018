@@ -4,6 +4,8 @@ require 'lib.helpers.core_funcs'
 require 'lib.ECFS'
 LEVELS = { "hungover", "painkillers", "trapDoors", "cubeTransporter", "turretLevel", "rainbowCookie", "credits" }
 
+DEBUG = true
+
 function NEXTLEVEL()
     for i = 1, #LEVELS - 1 do
         if LEVELS[i] == LEVEL then

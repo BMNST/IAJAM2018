@@ -3,24 +3,24 @@ local ctx = GS.new()
 local toLevel = true
 
 local order = {
-    { cutscene = { s = 1 } },
+    { cutscene = true },
     { wait = true },
-    { cutscene = { s = 5 } },
+    { cutscene = true },
     { level = "hungover" },
-    { cutscene = { s = 11 } },
+    { cutscene = true },
     { level = "painkillers" },
-    { cutscene = { s = 14 } },
+    { cutscene = true },
     { level = "trapDoors" },
     { level = "cubeTransporter" },
-    { cutscene = { s = 22 } },
+    { cutscene = true },
     { level = "stoppingLasers" },
-    { cutscene = { s = 30 } },
+    { cutscene = true },
     { level = "rainbowCookie" },
-    { cutscene = { s = 61 } },
+    { cutscene = true },
     { level = "disco" },
-    { cutscene = { s = 97 } },
+    { cutscene = true },
     { level = "turretLevel" },
-    { cutscene = { s = 131 } },
+    { cutscene = true },
     { level = "credits" },
 }
 
@@ -33,11 +33,14 @@ function ctx:enter()
 end
 
 function ctx:update(dt)
+    if DEBUG then
+        require("lib.lovebird").update()
+    end
     if toLevel then
         orderIndex = orderIndex + 1
 
         if order[orderIndex].cutscene then
-            GS.push(scripts.gamestates.cutscene, order[orderIndex].cutscene.s)
+            GS.push(scripts.gamestates.cutscene)
         end
         if order[orderIndex].level then
             GS.push(scripts.gamestates.game, order[orderIndex].level)
