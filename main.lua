@@ -33,7 +33,9 @@ SQUARESIZE = 32
 MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load()
-    love.audio.newSource("assets/music/spaceisdark.ogg"):play()
+    local ass = love.audio.newSource("assets/music/spaceisdark.ogg")
+    ass:setLooping(true)
+    ass:play()
     DARKVIGNETTE = love.graphics.newImage("assets/tileset/black vignette.png")
     LIGHTVIGNETTE = love.graphics.newImage("assets/tileset/white vignette.png")
     love.graphics.setDefaultFilter("nearest")
