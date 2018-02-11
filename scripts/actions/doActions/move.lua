@@ -33,7 +33,7 @@ return function(entity, args)
     local tile = core.getTile(entity.position, F.endNode)
     if entity == GETPLAYER() then
         if tile then
-            scripts.levels.loadLevel("testLevel")
+            scripts.levels.loadLevel(NEXTLEVEL())
         end
     end
 

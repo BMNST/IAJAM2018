@@ -7,13 +7,10 @@
 --
 
 return function()
-    LOADBYMAPFILE("assets/maps/nanders playground/test2.lua")
-    scripts.objects.door(6, 8, true, true, "toggleDoor")
-    --scripts.objects.movingBlock(14, 14, "moveLeft", "moveRight", "moveUp", "moveDown")
-    scripts.objects.turret(6, 10, 2, true, "rotateLeft", { "toggleLaser", "resetRotation1" })
-    scripts.objects.trapDoor(6, 9, false, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(13, 14, false, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(14, 13, false, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(15, 14, false, false, "toggleDoor", "toggleDoor")
-    scripts.objects.trapDoor(14, 15, false, false, "toggleDoor", "toggleDoor")
+    LOADBYMAPFILE("assets/maps/nanmaps/cubetransporter.lua")
+    scripts.objects.door(17, 7, true, false, nil, "closeDoor")
+
+    scripts.objects.door(24, 12, true, false, nil, "closeDoor")
+    scripts.objects.door(24, 17, false, false, nil, "openDoor")
+    scripts.objects.movingBlock(17, 8, "moveDown", nil, nil, "moveUp")
 end
