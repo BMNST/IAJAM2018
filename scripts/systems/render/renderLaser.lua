@@ -34,6 +34,6 @@ return function(entity, args)
         if not scripts.systems.collision.mapCollision(loc) then
             return
         end
-        love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(2, 19), loc.x * SQUARESIZE+ 16, loc.y * SQUARESIZE + 16, math.pi / 2 * (entity.orientation), 2, 2, 8, 8)
+        love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(2, 19), loc.x * SQUARESIZE + 16, loc.y * SQUARESIZE + 16, math.pi / 2 * (entity.orientation), 2, 2, 8, 8)
     end
 end

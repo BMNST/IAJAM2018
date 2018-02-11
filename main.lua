@@ -14,6 +14,7 @@ SQUARESIZE = 32
 MAPTEXTUREATLAS= love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load()
+    love.graphics.setDefaultFilter("nearest")
     GS.registerEvents()
     GS.push(scripts.gamestates.gamestateSelect)
 end

@@ -1,13 +1,13 @@
 --
 -- Created by IntelliJ IDEA.
 -- User: nander
--- Date: 10/02/2018
--- Time: 15:13
+-- Date: 11/02/2018
+-- Time: 08:33
 -- To change this template use File | Settings | File Templates.
 --
 
 return function(a, args)
-    a.open = not a.open
+    a.open = args
     print(a.open, a.color.B)
     if a.open then
         a.color.B = 128
