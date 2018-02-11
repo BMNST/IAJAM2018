@@ -33,7 +33,6 @@ function ctx:enter()
 end
 
 function ctx:update(dt)
-    require("lib.lovebird").update()
     if toLevel then
         orderIndex = orderIndex + 1
 

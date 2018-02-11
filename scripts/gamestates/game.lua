@@ -9,7 +9,6 @@ end
 
 
 function ctx:update(dt)
-    require("lib.lovebird").update()
     MAP:update(dt)
 
     for k, v in pairs(F.behaves) do

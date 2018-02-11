@@ -9,7 +9,6 @@ function ctx:enter(from, startIndex)
 end
 
 function ctx:update(dt)
-    require("lib.lovebird").update()
 end
 
 function ctx:draw()
