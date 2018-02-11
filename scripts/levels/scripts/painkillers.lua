@@ -10,8 +10,8 @@
 
 return function()
     LOADBYMAPFILE("assets/maps/final/painkillers.lua")
-    scripts.objects.door(20, 11, false, false, "toggleDoor", nil, nil, nil, nil)
-    scripts.objects.door(21, 14, false, true, "toggleDoor", nil, nil, nil, nil)
-    scripts.objects.door(22, 14, false, true, nil, nil, nil, "toggleDoor", nil)
+    scripts.objects.door(20, 11, false, false, "openDoor", nil, nil, nil, nil)
+    scripts.objects.door(21, 14, false, true, "openDoor", nil, nil, nil, nil)
+    scripts.objects.door(22, 14, false, true, nil, nil, nil, "openDoor", nil)
 end
 
