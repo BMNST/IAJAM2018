@@ -10,7 +10,7 @@
 -- shortest path (so far): p, e, e, e, g, y, g, p, p, e, e, e
 
 return function()
-    LOADBYMAPFILE("assets/maps/tims playground/test.lua")
+    LOADBYMAPFILE("assets/maps/final/turretLevel.lua")
     scripts.objects.door(17, 10, true, true, nil, nil, nil, "toggleDoor", "closeDoor")
     scripts.objects.door(21, 10, false, true, nil, "toggleDoor", nil, "toggleDoor", "closeDoor")
     scripts.objects.door(25, 17, false, true, nil, nil, nil, nil, "toggleDoor")
