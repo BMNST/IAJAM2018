@@ -55,9 +55,7 @@ function ctx:draw()
     scripts.systems.render.renderText.renderText("  #255/000/000/255#  When###000/255/000/255# the###000/000/255/255# Unsinkable###255/255/000/255# Happens##", { x = 170, y = 200 }, 50)
     scripts.systems.render.renderText.renderText("Press space to start the game", { x = 400, y = 650 }, 30)
 
-    --scripts.systems.collision.debug_draw()
-    love.graphics.print(love.timer.getFPS(), 10, 10)
-    love.graphics.print(collectgarbage('count'), 50, 10)
+
 end
 
 function ctx:keypressed(key, scancode, isrepeat)

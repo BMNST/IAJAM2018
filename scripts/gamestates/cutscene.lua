@@ -21,8 +21,7 @@ function ctx:draw()
     scripts.systems.dialogbox.draw()
 
     --scripts.systems.collision.debug_draw()
-    love.graphics.print(love.timer.getFPS(), 10, 10)
-    love.graphics.print(collectgarbage('count'), 50, 10)
+
 end
 
 function ctx:keypressed(key, scancode, isrepeat)

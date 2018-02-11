@@ -40,12 +40,10 @@ function ctx:draw()
     core.run("turret", scripts.systems.render.renderLaser, {})
 
     --scripts.systems.collision.debug_draw()
-    love.graphics.print(love.timer.getFPS(), 10, 10)
-    love.graphics.print(collectgarbage('count'), 50, 10)
+
     scripts.systems.render.renderPlayer(GETPLAYER())
     --scripts.systems.collision.debug_draw()
-    love.graphics.print(love.timer.getFPS(), 10, 10)
-    love.graphics.print(collectgarbage('count'), 50, 10)
+
 
     core.run("movingBlock", scripts.systems.render.renderMovingBlock, {})
 
@@ -58,7 +56,7 @@ function ctx:draw()
         love.graphics.setColor(0,0,0,a)
         love.graphics.rectangle("fill", 0,0,84*16,48*16)
         love.graphics.setColor(255,255,255,255)
-        scripts.systems.render.renderText.renderText("  #255/255/255/255#  You###255/255/255/255# have###255/000/000/255# DIED", { x = 280, y = 200 }, 50)
+        scripts.systems.render.renderText.renderText("  #255/255/255/255#  You###255/255/255/255# have###255/000/000/255# DIED", { x = 320, y = 200 }, 50)
     end
 end
 
