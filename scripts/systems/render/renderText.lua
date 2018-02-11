@@ -2,7 +2,6 @@ local a = {}
 
 
 local fonts = {}
---font:setFilter("nearest")
 
 local function color(text, i)
     return { tonumber(text:sub(i + 1, i + 3)), tonumber(text:sub(i + 5, i + 7)), tonumber(text:sub(i + 9, i + 11)), tonumber(text:sub(i + 13, i + 15)) }
@@ -20,7 +19,7 @@ a.parse = function(text, length)
     end
 
     local i, c = 0, 0
-    while c < length do
+    while c <= length do
         if text:sub(i, i) == '#' then
             if buffer ~= "" then
                 colortext[#colortext + 1] = buffer

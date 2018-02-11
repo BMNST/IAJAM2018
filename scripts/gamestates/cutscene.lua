@@ -30,7 +30,7 @@ function ctx:keypressed(key, scancode, isrepeat)
         if love.keyboard.isDown("escape") then
             GS.pop()
         else
-            if a.get() >= e then
+            if scripts.systems.dialogbox.get() >= e then
                 GS.pop()
             else
                 scripts.systems.dialogbox.next()
