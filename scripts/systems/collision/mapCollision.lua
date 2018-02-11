@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-return function (position)
+return function(position)
     for k, v in pairs(F.unwalkable) do
         if v.position.x == position.x and v.position.y == position.y then
             return false

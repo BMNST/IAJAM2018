@@ -57,6 +57,7 @@ function core.entity.remove(entity, idx, sf)
         end
     end
 end
+
 function core.entity.isA(entity, filterName)
     return F[filterName] and F[filterName][entity]
 end

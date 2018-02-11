@@ -25,7 +25,7 @@ a("moveRight", function(a)
     scripts.actions.startActions.move(a, { x = 1, y = 0 })
 end)
 a("moveUp", function(a)
-    local pos = { x = a.position.x , y = a.position.y - 1 }
+    local pos = { x = a.position.x, y = a.position.y - 1 }
     if not scripts.systems.collision.mapCollision(pos) then
         return
     end

@@ -63,13 +63,13 @@ function ctx:keypressed(key, scancode, isrepeat)
         end
         if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
             if love.keyboard.isDown("w") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1 })
+                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1, orientation = 1 })
             elseif love.keyboard.isDown("a") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0 })
+                scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0, orientation = 4 })
             elseif love.keyboard.isDown("s") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1 })
+                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 })
             elseif love.keyboard.isDown("d") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0 })
+                scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 })
             elseif love.keyboard.isDown("escape") then
                 GS.pop()
             end

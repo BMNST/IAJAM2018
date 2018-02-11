@@ -9,5 +9,4 @@
 
 return function(object)
     scripts.levels.loadLevel(LEVEL)
-
 end

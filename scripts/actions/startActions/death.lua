@@ -9,6 +9,6 @@
 return function(entity)
     local c = (entity.behavior and entity.behavior.actions) or {}
     c.death = true
-    entity.behavior = { actions=c, startTime = 2, time = 2 }
+    entity.behavior = { actions = c, startTime = 2, time = 2 }
     core.filter.update(entity)
 end

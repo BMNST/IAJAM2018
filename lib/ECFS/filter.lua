@@ -33,11 +33,12 @@ core.filter.remove = function(name)
     end
 end
 function core.filter.get(name)
-    for k,v in pairs(F[name]) do
+    for k, v in pairs(F[name]) do
         return k
     end
     return nil
 end
+
 core.filter.update = function(entity)
     -- Add the entity to the ID-lists
     local R = core.filter.rules

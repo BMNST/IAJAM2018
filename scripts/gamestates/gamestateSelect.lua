@@ -1,7 +1,7 @@
 local ctx = GS.new()
 
 function ctx:enter()
-    MAPTEXTUREATLAS= love.graphics.newImage("assets/tileset/tileset.png")
+    MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
     print("Entered " .. self.name)
     ctx.from = from
 end

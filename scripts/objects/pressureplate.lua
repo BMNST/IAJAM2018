@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-return function(x,y,color)
-    core.entity.add({ position = { x = x, y = y }, color = { R = 64, G = 0, B = 0 }, tileColor = color, tileSpriteName = color.."Tile" })
+return function(x, y, color)
+    core.entity.add({ position = { x = x, y = y }, color = { R = 64, G = 0, B = 0 }, tileColor = color, tileSpriteName = color .. "Tile" })
 end
 

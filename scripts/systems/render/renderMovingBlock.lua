@@ -24,8 +24,8 @@ quads.trapclosedDoorRotated = { 9, 20 }
 
 return function(entity, args)
     if entity.behavior and entity.behavior.actions.move then
-        local t =   1-entity.behavior.time / entity.behavior.startTime
-        love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(unpack(quads[entity.tileSpriteName] or { 5, 0 })),(entity.position.x + entity.behavior.actions.move.x * t) * SQUARESIZE+16, (entity.position.y + t * entity.behavior.actions.move.y) * SQUARESIZE+16 , 0, 2, 2, 8, 8)
+        local t = 1 - entity.behavior.time / entity.behavior.startTime
+        love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(unpack(quads[entity.tileSpriteName] or { 5, 0 })), (entity.position.x + entity.behavior.actions.move.x * t) * SQUARESIZE + 16, (entity.position.y + t * entity.behavior.actions.move.y) * SQUARESIZE + 16, 0, 2, 2, 8, 8)
     else
         love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(unpack(quads[entity.tileSpriteName] or { 5, 0 })), entity.position.x * SQUARESIZE + 16, entity.position.y * SQUARESIZE + 16, 0, 2, 2, 8, 8)
     end

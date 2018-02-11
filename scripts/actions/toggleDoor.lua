@@ -11,12 +11,10 @@ local a = function(str, func) ACTIONLOOKUPLIST[str] = func end
 a("toggleDoor",
     function(a)
         scripts.actions.startActions.toggleDoor(a)
-
     end)
 a("openDoor",
     function(a)
-        scripts.actions.startActions.openCloseDoor(a,true)
-
+        scripts.actions.startActions.openCloseDoor(a, true)
     end)
 a("closeDoor",
     function(a)

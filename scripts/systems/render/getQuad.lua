@@ -7,11 +7,11 @@
 --
 local quads = {}
 
-return function(x,y)
-    if quads[x..":"..y] then
-        return quads[x..":"..y]
+return function(x, y)
+    if quads[x .. ":" .. y] then
+        return quads[x .. ":" .. y]
     end
-    local q = love.graphics.newQuad(x*SQUARESIZE/2,  y*SQUARESIZE/2, SQUARESIZE/2, SQUARESIZE/2, MAPTEXTUREATLAS:getDimensions())
-    quads[x..":"..y] = q
+    local q = love.graphics.newQuad(x * SQUARESIZE / 2, y * SQUARESIZE / 2, SQUARESIZE / 2, SQUARESIZE / 2, MAPTEXTUREATLAS:getDimensions())
+    quads[x .. ":" .. y] = q
     return q
 end

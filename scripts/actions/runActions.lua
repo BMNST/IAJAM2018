@@ -18,14 +18,13 @@ function runSingleAction(object, color)
     else
         for k, v in ipairs(object[color]) do
             ACTIONLOOKUPLIST[v](object)
-
         end
     end
 end
 
 -- Run actions for certain color.
 return function(color)
-    _G["FLASH"..color] = 0.1
+    _G["FLASH" .. color] = 0.1
     core.run(color, runSingleAction, color)
 end
 

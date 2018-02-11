@@ -62,7 +62,7 @@ local rl = function()
 end
 RELOADALL = function()
     un_require()
-print(" GAME LOGIC RESET")
+    print(" GAME LOGIC RESET")
 
     rl()
 

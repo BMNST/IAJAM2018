@@ -31,14 +31,13 @@ local turretFunc = function(entity)
         if player.position.x == loc.x and player.position.y == loc.y then
             print("YOU HAVE DIED")
             scripts.actions.startActions.death(player)
-
         end
     end
 end
 
 local checkTrapDoors = function(entity)
     local p = GETPLAYER()
-    if  entity.position.x ==p.position.x and entity.position.y == p.position.y and not entity.open then
+    if entity.position.x == p.position.x and entity.position.y == p.position.y and not entity.open then
 
         scripts.actions.startActions.death(p)
     end
@@ -46,6 +45,5 @@ end
 return function()
     core.run("turret", turretFunc, {})
     core.run("trapdoor", checkTrapDoors, {})
-
 end
 

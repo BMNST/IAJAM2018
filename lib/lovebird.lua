@@ -429,308 +429,309 @@ lovebird.pages["env.json"] = [[
 
 
 function lovebird.init()
-  -- Init server
-  lovebird.server = assert(socket.bind(lovebird.host, lovebird.port))
-  lovebird.addr, lovebird.port = lovebird.server:getsockname()
-  lovebird.server:settimeout(0)
-  -- Wrap print
-  lovebird.origprint = print
-  if lovebird.wrapprint then
-    local oldprint = print
-    print = function(...)
-      oldprint(...)
-      lovebird.print(...)
+    -- Init server
+    lovebird.server = assert(socket.bind(lovebird.host, lovebird.port))
+    lovebird.addr, lovebird.port = lovebird.server:getsockname()
+    lovebird.server:settimeout(0)
+    -- Wrap print
+    lovebird.origprint = print
+    if lovebird.wrapprint then
+        local oldprint = print
+        print = function(...)
+            oldprint(...)
+            lovebird.print(...)
+        end
     end
-  end
-  -- Compile page templates
-  for k, page in pairs(lovebird.pages) do
-    lovebird.pages[k] = lovebird.template(page, "lovebird, req",
-                                          "pages." .. k)
-  end
-  lovebird.inited = true
+    -- Compile page templates
+    for k, page in pairs(lovebird.pages) do
+        lovebird.pages[k] = lovebird.template(page, "lovebird, req",
+            "pages." .. k)
+    end
+    lovebird.inited = true
 end
 
 
 function lovebird.template(str, params, chunkname)
-  params = params and ("," .. params) or ""
-  local f = function(x) return string.format(" echo(%q)", x) end
-  str = ("?>"..str.."<?lua"):gsub("%?>(.-)<%?lua", f)
-  str = "local echo " .. params .. " = ..." .. str
-  local fn = assert(lovebird.loadstring(str, chunkname))
-  return function(...)
-    local output = {}
-    local echo = function(str) table.insert(output, str) end
-    fn(echo, ...)
-    return table.concat(lovebird.map(output, tostring))
-  end
+    params = params and ("," .. params) or ""
+    local f = function(x) return string.format(" echo(%q)", x) end
+    str = ("?>" .. str .. "<?lua"):gsub("%?>(.-)<%?lua", f)
+    str = "local echo " .. params .. " = ..." .. str
+    local fn = assert(lovebird.loadstring(str, chunkname))
+    return function(...)
+        local output = {}
+        local echo = function(str) table.insert(output, str) end
+        fn(echo, ...)
+        return table.concat(lovebird.map(output, tostring))
+    end
 end
 
 
 function lovebird.map(t, fn)
-  local res = {}
-  for k, v in pairs(t) do res[k] = fn(v) end
-  return res
+    local res = {}
+    for k, v in pairs(t) do res[k] = fn(v) end
+    return res
 end
 
 
 function lovebird.trace(...)
-  local str = "[lovebird] " .. table.concat(lovebird.map({...}, tostring), " ")
-  print(str)
-  if not lovebird.wrapprint then lovebird.print(str) end
+    local str = "[lovebird] " .. table.concat(lovebird.map({ ... }, tostring), " ")
+    print(str)
+    if not lovebird.wrapprint then lovebird.print(str) end
 end
 
 
 function lovebird.unescape(str)
-  local f = function(x) return string.char(tonumber("0x"..x)) end
-  return (str:gsub("%+", " "):gsub("%%(..)", f))
+    local f = function(x) return string.char(tonumber("0x" .. x)) end
+    return (str:gsub("%+", " "):gsub("%%(..)", f))
 end
 
 
 function lovebird.parseurl(url)
-  local res = {}
-  res.path, res.search = url:match("/([^%?]*)%??(.*)")
-  res.query = {}
-  for k, v in res.search:gmatch("([^&^?]-)=([^&^#]*)") do
-    res.query[k] = lovebird.unescape(v)
-  end
-  return res
+    local res = {}
+    res.path, res.search = url:match("/([^%?]*)%??(.*)")
+    res.query = {}
+    for k, v in res.search:gmatch("([^&^?]-)=([^&^#]*)") do
+        res.query[k] = lovebird.unescape(v)
+    end
+    return res
 end
 
 
 local htmlescapemap = {
-  ["<"] = "&lt;",
-  ["&"] = "&amp;",
-  ['"'] = "&quot;",
-  ["'"] = "&#039;",
+    ["<"] = "&lt;",
+    ["&"] = "&amp;",
+    ['"'] = "&quot;",
+    ["'"] = "&#039;",
 }
 
 function lovebird.htmlescape(str)
-  return ( str:gsub("[<&\"']", htmlescapemap) )
+    return (str:gsub("[<&\"']", htmlescapemap))
 end
 
 
 function lovebird.truncate(str, len)
-  if #str <= len then
-    return str
-  end
-  return str:sub(1, len - 3) .. "..."
+    if #str <= len then
+        return str
+    end
+    return str:sub(1, len - 3) .. "..."
 end
 
 
 function lovebird.compare(a, b)
-  local na, nb = tonumber(a), tonumber(b)
-  if na then
-    if nb then return na < nb end
-    return false
-  elseif nb then
-    return true
-  end
-  return tostring(a) < tostring(b)
+    local na, nb = tonumber(a), tonumber(b)
+    if na then
+        if nb then return na < nb end
+        return false
+    elseif nb then
+        return true
+    end
+    return tostring(a) < tostring(b)
 end
 
 
 function lovebird.checkwhitelist(addr)
-  if lovebird.whitelist == nil then return true end
-  for _, a in pairs(lovebird.whitelist) do
-    local ptn = "^" .. a:gsub("%.", "%%."):gsub("%*", "%%d*") .. "$"
-    if addr:match(ptn) then return true end
-  end
-  return false
+    if lovebird.whitelist == nil then return true end
+    for _, a in pairs(lovebird.whitelist) do
+        local ptn = "^" .. a:gsub("%.", "%%."):gsub("%*", "%%d*") .. "$"
+        if addr:match(ptn) then return true end
+    end
+    return false
 end
 
 
 function lovebird.clear()
-  lovebird.lines = {}
-  lovebird.buffer = ""
+    lovebird.lines = {}
+    lovebird.buffer = ""
 end
 
 
 function lovebird.pushline(line)
-  line.time = os.time()
-  line.count = 1
-  table.insert(lovebird.lines, line)
-  if #lovebird.lines > lovebird.maxlines then
-    table.remove(lovebird.lines, 1)
-  end
-  lovebird.recalcbuffer()
+    line.time = os.time()
+    line.count = 1
+    table.insert(lovebird.lines, line)
+    if #lovebird.lines > lovebird.maxlines then
+        table.remove(lovebird.lines, 1)
+    end
+    lovebird.recalcbuffer()
 end
 
 
 function lovebird.recalcbuffer()
-  local function doline(line)
-    local str = line.str
-    if not lovebird.allowhtml then
-      str = lovebird.htmlescape(line.str):gsub("\n", "<br>")
+    local function doline(line)
+        local str = line.str
+        if not lovebird.allowhtml then
+            str = lovebird.htmlescape(line.str):gsub("\n", "<br>")
+        end
+        if line.type == "input" then
+            str = '<span class="inputline">' .. str .. '</span>'
+        else
+            if line.type == "error" then
+                str = '<span class="errormarker">!</span> ' .. str
+                str = '<span class="errorline">' .. str .. '</span>'
+            end
+            if line.count > 1 then
+                str = '<span class="repeatcount">' .. line.count .. '</span> ' .. str
+            end
+            if lovebird.timestamp then
+                str = os.date('<span class="timestamp">%H:%M:%S</span> ', line.time) ..
+                        str
+            end
+        end
+        return str
     end
-    if line.type == "input" then
-      str = '<span class="inputline">' .. str .. '</span>'
-    else
-      if line.type == "error" then
-        str = '<span class="errormarker">!</span> ' .. str
-        str = '<span class="errorline">' .. str .. '</span>'
-      end
-      if line.count > 1 then
-        str = '<span class="repeatcount">' .. line.count .. '</span> ' .. str
-      end
-      if lovebird.timestamp then
-        str = os.date('<span class="timestamp">%H:%M:%S</span> ', line.time) ..
-              str
-      end
-    end
-    return str
-  end
-  lovebird.buffer = table.concat(lovebird.map(lovebird.lines, doline), "<br>")
+
+    lovebird.buffer = table.concat(lovebird.map(lovebird.lines, doline), "<br>")
 end
 
 
 function lovebird.print(...)
-  local t = {}
-  for i = 1, select("#", ...) do
-    table.insert(t, tostring(select(i, ...)))
-  end
-  local str = table.concat(t, " ")
-  local last = lovebird.lines[#lovebird.lines]
-  if last and str == last.str then
-    -- Update last line if this line is a duplicate of it
-    last.time = os.time()
-    last.count = last.count + 1
-    lovebird.recalcbuffer()
-  else
-    -- Create new line
-    lovebird.pushline({ type = "output", str = str })
-  end
+    local t = {}
+    for i = 1, select("#", ...) do
+        table.insert(t, tostring(select(i, ...)))
+    end
+    local str = table.concat(t, " ")
+    local last = lovebird.lines[#lovebird.lines]
+    if last and str == last.str then
+        -- Update last line if this line is a duplicate of it
+        last.time = os.time()
+        last.count = last.count + 1
+        lovebird.recalcbuffer()
+    else
+        -- Create new line
+        lovebird.pushline({ type = "output", str = str })
+    end
 end
 
 
 function lovebird.onerror(err)
-  lovebird.pushline({ type = "error", str = err })
-  if lovebird.wrapprint then
-    lovebird.origprint("[lovebird] ERROR: " .. err)
-  end
+    lovebird.pushline({ type = "error", str = err })
+    if lovebird.wrapprint then
+        lovebird.origprint("[lovebird] ERROR: " .. err)
+    end
 end
 
 
 function lovebird.onrequest(req, client)
-  local page = req.parsedurl.path
-  page = page ~= "" and page or "index"
-  -- Handle "page not found"
-  if not lovebird.pages[page] then
-    return "HTTP/1.1 404\r\nContent-Length: 8\r\n\r\nBad page"
-  end
-  -- Handle page
-  local str
-  xpcall(function()
-    local data = lovebird.pages[page](lovebird, req)
-    local contenttype = "text/html"
-    if string.match(page, "%.json$") then
-      contenttype = "application/json"
+    local page = req.parsedurl.path
+    page = page ~= "" and page or "index"
+    -- Handle "page not found"
+    if not lovebird.pages[page] then
+        return "HTTP/1.1 404\r\nContent-Length: 8\r\n\r\nBad page"
     end
-    str = "HTTP/1.1 200 OK\r\n" ..
-          "Content-Type: " .. contenttype .. "\r\n" ..
-          "Content-Length: " .. #data .. "\r\n" ..
-          "\r\n" .. data
-  end, lovebird.onerror)
-  return str
+    -- Handle page
+    local str
+    xpcall(function()
+        local data = lovebird.pages[page](lovebird, req)
+        local contenttype = "text/html"
+        if string.match(page, "%.json$") then
+            contenttype = "application/json"
+        end
+        str = "HTTP/1.1 200 OK\r\n" ..
+                "Content-Type: " .. contenttype .. "\r\n" ..
+                "Content-Length: " .. #data .. "\r\n" ..
+                "\r\n" .. data
+    end, lovebird.onerror)
+    return str
 end
 
 
 function lovebird.receive(client, pattern)
-  while 1 do
-    local data, msg = client:receive(pattern)
-    if not data then
-      if msg == "timeout" then
-        -- Wait for more data
-        coroutine.yield(true)
-      else
-        -- Disconnected -- yielding nil means we're done
-        coroutine.yield(nil)
-      end
-    else
-      return data
+    while 1 do
+        local data, msg = client:receive(pattern)
+        if not data then
+            if msg == "timeout" then
+                -- Wait for more data
+                coroutine.yield(true)
+            else
+                -- Disconnected -- yielding nil means we're done
+                coroutine.yield(nil)
+            end
+        else
+            return data
+        end
     end
-  end
 end
 
 
 function lovebird.send(client, data)
-  local idx = 1
-  while idx < #data do
-    local res, msg = client:send(data, idx)
-    if not res and msg == "closed" then
-      -- Handle disconnect
-      coroutine.yield(nil)
-    else
-      idx = idx + res
-      coroutine.yield(true)
+    local idx = 1
+    while idx < #data do
+        local res, msg = client:send(data, idx)
+        if not res and msg == "closed" then
+            -- Handle disconnect
+            coroutine.yield(nil)
+        else
+            idx = idx + res
+            coroutine.yield(true)
+        end
     end
-  end
 end
 
 
 function lovebird.onconnect(client)
-  -- Create request table
-  local requestptn = "(%S*)%s*(%S*)%s*(%S*)"
-  local req = {}
-  req.socket = client
-  req.addr, req.port = client:getsockname()
-  req.request = lovebird.receive(client, "*l")
-  req.method, req.url, req.proto = req.request:match(requestptn)
-  req.headers = {}
-  while 1 do
-    local line, msg = lovebird.receive(client, "*l")
-    if not line or #line == 0 then break end
-    local k, v = line:match("(.-):%s*(.*)$")
-    req.headers[k] = v
-  end
-  if req.headers["Content-Length"] then
-    req.body = lovebird.receive(client, req.headers["Content-Length"])
-  end
-  -- Parse body
-  req.parsedbody = {}
-  if req.body then
-    for k, v in req.body:gmatch("([^&]-)=([^&^#]*)") do
-      req.parsedbody[k] = lovebird.unescape(v)
+    -- Create request table
+    local requestptn = "(%S*)%s*(%S*)%s*(%S*)"
+    local req = {}
+    req.socket = client
+    req.addr, req.port = client:getsockname()
+    req.request = lovebird.receive(client, "*l")
+    req.method, req.url, req.proto = req.request:match(requestptn)
+    req.headers = {}
+    while 1 do
+        local line, msg = lovebird.receive(client, "*l")
+        if not line or #line == 0 then break end
+        local k, v = line:match("(.-):%s*(.*)$")
+        req.headers[k] = v
     end
-  end
-  -- Parse request line's url
-  req.parsedurl = lovebird.parseurl(req.url)
-  -- Handle request; get data to send and send
-  local data = lovebird.onrequest(req)
-  lovebird.send(client, data)
-  -- Clear up
-  client:close()
+    if req.headers["Content-Length"] then
+        req.body = lovebird.receive(client, req.headers["Content-Length"])
+    end
+    -- Parse body
+    req.parsedbody = {}
+    if req.body then
+        for k, v in req.body:gmatch("([^&]-)=([^&^#]*)") do
+            req.parsedbody[k] = lovebird.unescape(v)
+        end
+    end
+    -- Parse request line's url
+    req.parsedurl = lovebird.parseurl(req.url)
+    -- Handle request; get data to send and send
+    local data = lovebird.onrequest(req)
+    lovebird.send(client, data)
+    -- Clear up
+    client:close()
 end
 
 
 function lovebird.update()
-  if not lovebird.inited then lovebird.init() end
-  -- Handle new connections
-  while 1 do
-    -- Accept new connections
-    local client = lovebird.server:accept()
-    if not client then break end
-    client:settimeout(0)
-    local addr = client:getsockname()
-    if lovebird.checkwhitelist(addr) then
-      -- Connection okay -- create and add coroutine to set
-      local conn = coroutine.wrap(function()
-        xpcall(function() lovebird.onconnect(client) end, function() end)
-      end)
-      lovebird.connections[conn] = true
-    else
-      -- Reject connection not on whitelist
-      lovebird.trace("got non-whitelisted connection attempt: ", addr)
-      client:close()
+    if not lovebird.inited then lovebird.init() end
+    -- Handle new connections
+    while 1 do
+        -- Accept new connections
+        local client = lovebird.server:accept()
+        if not client then break end
+        client:settimeout(0)
+        local addr = client:getsockname()
+        if lovebird.checkwhitelist(addr) then
+            -- Connection okay -- create and add coroutine to set
+            local conn = coroutine.wrap(function()
+                xpcall(function() lovebird.onconnect(client) end, function() end)
+            end)
+            lovebird.connections[conn] = true
+        else
+            -- Reject connection not on whitelist
+            lovebird.trace("got non-whitelisted connection attempt: ", addr)
+            client:close()
+        end
     end
-  end
-  -- Handle existing connections
-  for conn in pairs(lovebird.connections) do
-    -- Resume coroutine, remove if it has finished
-    local status = conn()
-    if status == nil then
-      lovebird.connections[conn] = nil
+    -- Handle existing connections
+    for conn in pairs(lovebird.connections) do
+        -- Resume coroutine, remove if it has finished
+        local status = conn()
+        if status == nil then
+            lovebird.connections[conn] = nil
+        end
     end
-  end
 end
 
 

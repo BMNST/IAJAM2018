@@ -17,7 +17,6 @@ return function(a, args)
         a.color.B = 255
 
         a.tileSpriteName = "closedDoor"
-
     end
     if a.trapdoor then
         a.tileSpriteName = "trap" .. a.tileSpriteName
@@ -28,7 +27,6 @@ return function(a, args)
             a.unwalkable = true
         end
         core.filter.update(a)
-
     end
     if a.rotated then
         a.tileSpriteName = a.tileSpriteName .. "Rotated"
