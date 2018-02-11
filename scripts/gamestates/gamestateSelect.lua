@@ -5,7 +5,7 @@ local toLevel = false
 local order = {
     {},
     { cutscene = { s = 1, e = 3 } },
-    { level = "hungover" },
+    { level = "disco" },
     { cutscene = { s = 1, e = 10 } },
     { cutscene = { s = 1, e = 10 } },
     { cutscene = { s = 1, e = 10 } },
