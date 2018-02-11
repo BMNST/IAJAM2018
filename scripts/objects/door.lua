@@ -16,13 +16,16 @@
 
 return function(x, y, open, rotated, ember, purple, cyan, green, yellow)
     local ts = "closedDoor"
+    local unwalkable
     if open then
         ts = "openDoor"
+    else
+        unwalkable = true
     end
     if rotated then
         ts = ts .. "Rotated"
     end
-    core.entity.add({ position = { x = x, y = y }, color = { R = 0, G = 0, B = 128 }, open = open, rotated = rotated, ember = ember, purple = purple, cyan = cyan, green = green, yellow = yellow, tileSpriteName = ts })
+    core.entity.add({ position = { x = x, y = y }, color = { R = 0, G = 0, B = 128 }, open = open, unwalkable = unwalkable, rotated = rotated, ember = ember, purple = purple, cyan = cyan, green = green, yellow = yellow, tileSpriteName = ts })
 end
 
 

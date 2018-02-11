@@ -2,6 +2,15 @@ GS = require "lib.gamestate"
 pprint = require 'lib.pprint'
 require 'lib.helpers.core_funcs'
 require 'lib.ECFS'
+LEVELS = { "testLevel", "testTim" }
+function NEXTLEVEL()
+    for i = 1, #LEVELS - 1 do
+        if LEVELS[i] == LEVEL then
+            LEVEL = LEVELS[i+1]
+            return LEVEL
+        end
+    end
+end
 
 function GETPLAYER()
     for k, v in pairs(F.player) do
