@@ -13,3 +13,12 @@ a("toggleDoor",
         scripts.actions.startActions.toggleDoor(a)
 
     end)
+a("openDoor",
+    function(a)
+        scripts.actions.startActions.openCloseDoor(a,true)
+
+    end)
+a("closeDoor",
+    function(a)
+        scripts.actions.startActions.openCloseDoor(a, false)
+    end)

@@ -13,3 +13,12 @@ a("toggleLaser",
         scripts.actions.startActions.toggleLaser(a)
 
     end)
+a("turnOnLaser",
+    function(a)
+        scripts.actions.startActions.turnOnOffLaser(a,true)
+
+    end)
+a("turnOffLaser",
+    function(a)
+        scripts.actions.startActions.turnOnOffLaser(a, false)
+    end)

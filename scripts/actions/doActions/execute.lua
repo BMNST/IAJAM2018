@@ -13,6 +13,8 @@ ACTS.toggleDoor = "toggleDoor"
 ACTS.death = "death"
 ACTS.rotateTo = "rotateTo"
 ACTS.toggleLaser = "toggleLaser"
+ACTS.openCloseDoor = "openCloseDoor"
+ACTS.turnOnOffLaser = "turnOnOffLaser"
 
 return function(object)
     local behave = object.behavior
