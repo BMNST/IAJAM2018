@@ -10,7 +10,7 @@ return function(entity, args)
     love.graphics.setColor(255, 255, 255)
     local r = 0
     if entity.orientation then
-        r = math.pi / 2 * (entity.orientation - 3)
+        r = math.pi / 2 * (entity.orientation - 1)
     end
     local Q = { 0, 19 }
 
