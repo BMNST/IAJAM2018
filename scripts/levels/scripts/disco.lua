@@ -11,11 +11,11 @@
 return function()
     LOADBYMAPFILE("assets/maps/final/disco.lua")
 
-    scripts.objects.turret(16, 3, 0, false, nil, nil, "rotateRight", "rotateLeft", "toggleLaser")
+    scripts.objects.turret(16, 3, 1, false, nil, nil, "rotateRight", "rotateLeft", "toggleLaser")
     scripts.objects.turret(18, 3, 2, false, "rotateRight", "rotateLeft", nil, nil, "toggleLaser")
-    scripts.objects.turret(23, 3, 1, true, "rotateLeft", nil, nil, "rotateRight", nil)
-    scripts.objects.turret(14, 5, 3, false, nil, nil, "rotateLeft", "rotateRight", "toggleLaser")
-    scripts.objects.turret(14, 7, 1, false, "rotateLeft", "rotateRight", nil, nil, "toggleLaser")
+    scripts.objects.turret(23, 3, 1, true, "rotateLeft", nil, "rotateRight", nil, nil)
+    scripts.objects.turret(14, 5, 0, false, nil, nil, "rotateLeft", "rotateRight", "toggleLaser")
+    scripts.objects.turret(14, 7, 2, false, "rotateLeft", "rotateRight", nil, nil, "toggleLaser")
 
     scripts.objects.door(20, 6, false, true, nil, nil, nil, nil, "toggleDoor")
     scripts.objects.door(24, 10, false, false, nil, nil, nil, nil, "toggleDoor")
