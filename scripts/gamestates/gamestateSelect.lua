@@ -15,12 +15,12 @@ local order = {
     { cutscene = { s = 22 } },
     { level = "stoppingLasers" },
     { cutscene = { s = 30 } },
-    { level = "turretLevel" },
-    { cutscene = { s = 61 } },
     { level = "rainbowCookie" },
+    { cutscene = { s = 61 } },
+    { level = "turretLevel" },
     { cutscene = { s = 97 } },
     { level = "disco" },
-    { cutscene = { s = 129 } },
+    { cutscene = { s = 130 } },
     { level = "credits" },
 }
 
@@ -55,17 +55,15 @@ function ctx:draw()
     --When the Unsinkable Happens
     --    scripts.systems.render.renderText.renderText("1 : #255/255/000/255#Level 1##\n2 : Cutscene\n3 : NULL\n4 : Tims Test", { x = 200, y = 200 }, 35)
     scripts.systems.render.renderText.renderText("  #255/000/000/255#  When###000/255/000/255# the###000/000/255/255# Unsinkable###255/255/000/255# Happens##", { x = 170, y = 200 }, 50)
-    scripts.systems.render.renderText.renderText("Press space to start the game", { x = 400, y = 650 }, 30)
-
-
+    scripts.systems.render.renderText.renderText("Press any key to start the game", { x = 400, y = 650 }, 30)
 end
 
 function ctx:keypressed(key, scancode, isrepeat)
     if not isrepeat then
-        if love.keyboard.isDown("space") then
-            toLevel = true
-        elseif love.keyboard.isDown("escape") then
+        if love.keyboard.isDown("escape") then
             love.event.quit()
+        else
+            toLevel = true
         end
     end
 end
