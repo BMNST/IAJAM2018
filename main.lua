@@ -11,6 +11,7 @@ end
 
 require 'lib.load_all_scripts'
 SQUARESIZE = 32
+MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load()
     love.graphics.setDefaultFilter("nearest")
