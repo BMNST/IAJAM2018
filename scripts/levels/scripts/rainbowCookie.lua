@@ -9,7 +9,7 @@
 -- ember, purple, cyan, green, yellow
 
 return function()
-    LOADBYMAPFILE("assets/maps/logiced out maps/level.lua")
+    LOADBYMAPFILE("assets/maps/final/rainbowCookie.lua")
     scripts.objects.door(16, 9, false, false, "toggleDoor", nil, nil, nil, nil)
     scripts.objects.door(22, 10, true, true, nil, nil, nil, "toggleDoor", nil)
     scripts.objects.door(24, 12, false, false, nil, nil, "toggleDoor", nil, nil)
