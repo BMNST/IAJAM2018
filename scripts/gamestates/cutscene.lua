@@ -1,8 +1,13 @@
 local ctx = GS.new()
 
-function ctx:enter()
+local e = 0
+
+function ctx:enter(from, startIndex, endIndex)
     print("Entered " .. self.name)
     ctx.from = from
+    scripts.levels.loadLevel("testCutscene")
+    scripts.systems.dialogbox.set(startIndex)
+    e = endIndex
 end
 
 function ctx:update(dt)
@@ -10,8 +15,9 @@ function ctx:update(dt)
 end
 
 function ctx:draw()
+    MAP:draw(16, 16, 3, 3)
     love.graphics.setColor(255, 255, 255)
-    love.graphics.print("Cutscene!", 200, 200, 0, 3, 3)
+    --    love.graphics.print("Cutscene!", 200, 200, 0, 3, 3)
     scripts.systems.dialogbox.draw()
 
     --scripts.systems.collision.debug_draw()
@@ -24,7 +30,11 @@ function ctx:keypressed(key, scancode, isrepeat)
         if love.keyboard.isDown("escape") then
             GS.pop()
         else
-            scripts.systems.dialogbox.next()
+            if a.get() >= e then
+                GS.pop()
+            else
+                scripts.systems.dialogbox.next()
+            end
         end
     end
 end
