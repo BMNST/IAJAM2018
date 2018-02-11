@@ -7,6 +7,7 @@
 --
 
 -- ember, purple, cyan, green, yellow
+-- shortest path (so far): p, e, e, e, g, y, g, p, p, e, e, e
 
 return function()
     LOADBYMAPFILE("assets/maps/tims playground/test.lua")
