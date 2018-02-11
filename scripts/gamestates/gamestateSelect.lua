@@ -20,7 +20,7 @@ local order = {
     { level = "disco" },
     { cutscene = { s = 97 } },
     { level = "turretLevel" },
-    { cutscene = { s = 130 } },
+    { cutscene = { s = 131 } },
     { level = "credits" },
 }
 
