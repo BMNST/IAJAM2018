@@ -18,6 +18,7 @@ function GETLEVELID()
             return i
         end
     end
+    return 44
 end
 
 function GETPLAYER()
