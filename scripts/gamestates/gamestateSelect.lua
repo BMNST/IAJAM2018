@@ -21,7 +21,7 @@ end
 function ctx:keypressed(key, scancode, isrepeat)
     if not isrepeat then
         if love.keyboard.isDown("1") then
-            GS.push(scripts.gamestates.game, "cubeTransporter")
+            GS.push(scripts.gamestates.game, "hungover")
         elseif love.keyboard.isDown("2") then
             GS.push(scripts.gamestates.cutscene, "testCutscene", 1, 5)
         elseif love.keyboard.isDown("3") then
