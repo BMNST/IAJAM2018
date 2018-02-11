@@ -15,6 +15,6 @@ return function(entity, args)
     end
     local c = (entity.behavior and entity.behavior.actions) or {}
     c.move = args
-    entity.behavior = { actions = c, startTime = 0.06, time = 0.06 }
+    entity.behavior = { actions = c, startTime = 0.10, time = 0.10 }
     core.filter.update(entity)
 end
