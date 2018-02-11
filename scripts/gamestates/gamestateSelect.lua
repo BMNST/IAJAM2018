@@ -39,8 +39,9 @@ end
 
 function ctx:draw()
     love.graphics.setColor(255, 255, 255)
+    --When the Unsinkable Happens
     --    scripts.systems.render.renderText.renderText("1 : #255/255/000/255#Level 1##\n2 : Cutscene\n3 : NULL\n4 : Tims Test", { x = 200, y = 200 }, 35)
-    scripts.systems.render.renderText.renderText("  #255/000/000/255#Welcome##\n    #000/255/000/255#to##\n#000/000/255/255#    the##\n#255/255/000/255#Monkeyhouse##", { x = 500, y = 200 }, 50)
+    scripts.systems.render.renderText.renderText("  #255/000/000/255#  When###000/255/000/255# the###000/000/255/255# Unsinkable###255/255/000/255# Happens##", { x = 170, y = 200 }, 50)
     scripts.systems.render.renderText.renderText("Press space to start the game", { x = 400, y = 650 }, 30)
 
     --scripts.systems.collision.debug_draw()
