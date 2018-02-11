@@ -11,6 +11,7 @@ function NEXTLEVEL()
             return LEVEL
         end
     end
+    return LEVEL
 end
 function GETLEVELID()
     for i = 1, #LEVELS do
