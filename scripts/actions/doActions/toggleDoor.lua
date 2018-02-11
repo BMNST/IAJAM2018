@@ -7,8 +7,16 @@
 --
 
 return function(a, args)
+    if a.open and not a.trapdoor then
+        -- check if it can close
+        for _, v in pairs(F.movingBlock) do
+            if v.position.x == a.position.x and v.position.y == a.position.y then
+                return
+            end
+        end
+    end
     a.open = not a.open
-    print(a.open, a.color.B)
+
     if a.open then
         a.color.B = 128
         a.tileSpriteName = "openDoor"
