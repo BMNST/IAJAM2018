@@ -50,6 +50,7 @@ function ctx:draw()
         love.graphics.print("YOU HAVE DIED", 200, 200)
     end
     core.run("movingBlock", scripts.systems.render.renderMovingBlock, {})
+    scripts.systems.render.renderVignet()
 end
 
 function ctx:keypressed(key, scancode, isrepeat)
