@@ -1,25 +1,31 @@
 local ctx = GS.new()
 
-local toLevel = false
+local toLevel = true
 
 local order = {
-    {},
     { cutscene = { s = 1, e = 3 } },
-    { level = LEVELS[1] },
-    { cutscene = { s = 1, e = 10 } },
-    { level = LEVELS[2] },
-    { cutscene = { s = 1, e = 10 } },
-    { level = LEVELS[3] },
-    { cutscene = { s = 1, e = 10 } },
-    { cutscene = { s = 1, e = 10 } },
+    { wait = true },
+    { cutscene = { s = 5, e = 16 } },
+    { level = "hungover" },
+    { cutscene = { s = 18, e = 21 } },
+    { level = "painkillers" },
+    { cutscene = { s = 23, e = 29 } },
+    { level = "trapDoors" },
+    { cutscene = { s = 31, e = 37 } },
+    { level = "cubeTransporter" },
+    { cutscene = { s = 39, e = 102 } },
+    { level = "turretLevel" },
+    { cutscene = { s = 104, e = 175 } },
+    { level = "rainbowCookie" },
+    { cutscene = { s = 177, e = 247 } },
     { level = "credits" },
-
 }
 
 local orderIndex = 0
 
 function ctx:enter()
     print("Entered " .. self.name)
+    scripts.levels.loadLevel("testCutscene")
     ctx.from = from
 end
 
@@ -34,10 +40,15 @@ function ctx:update(dt)
         if order[orderIndex].level then
             GS.push(scripts.gamestates.game, order[orderIndex].level)
         end
+        if order[orderIndex].wait then
+            toLevel = false
+            scripts.levels.loadLevel("painkillers")
+        end
     end
 end
 
 function ctx:draw()
+    MAP:draw(16, 16, 3, 3)
     love.graphics.setColor(255, 255, 255)
     --When the Unsinkable Happens
     --    scripts.systems.render.renderText.renderText("1 : #255/255/000/255#Level 1##\n2 : Cutscene\n3 : NULL\n4 : Tims Test", { x = 200, y = 200 }, 35)
