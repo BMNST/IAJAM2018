@@ -10,10 +10,12 @@
 
 return function()
     LOADBYMAPFILE("assets/maps/tims playground/test.lua")
-    scripts.objects.door(20, 10, true, true, "toggleDoor", nil, nil, nil, nil)
-    scripts.objects.door(24, 10, false, true, nil, "toggleDoor", nil, nil, nil)
-    scripts.objects.door(28, 17, false, true, nil, nil, nil, nil, "toggleDoor")
-    scripts.objects.turret(22, 15, 0, false, nil, nil, nil, "rotateLeft", "toggleLaser")
-    scripts.objects.turret(26, 16, -1, true, "toggleLaser", nil, nil, nil, "toggleLaser")
-    scripts.objects.turret(26, 18, -1, true, "toggleLaser", "toggleLaser", "toggleLaser", "toggleLaser", "toggleLaser")
+    scripts.objects.door(17, 10, true, true, "toggleDoor", nil, nil, nil, nil)
+    scripts.objects.door(21, 10, false, true, nil, nil, nil, nil, nil)
+    scripts.objects.door(25, 17, false, true, nil, nil, nil, nil, "toggleDoor")
+    scripts.objects.turret(18, 13, 2, true, "rotateLeft", "resetRotation2", nil, nil, nil)
+    scripts.objects.turret(20, 13, 2, true, "rotateRight", "resetRotation2", nil, nil, nil)
+    scripts.objects.turret(19, 15, 0, false, nil, nil, nil, "rotateLeft", "toggleLaser")
+    scripts.objects.turret(23, 16, -1, true, "toggleLaser", nil, nil, nil, "toggleLaser")
+    scripts.objects.turret(23, 18, -1, true, "toggleLaser", "toggleLaser", "toggleLaser", "toggleLaser", "toggleLaser")
 end
