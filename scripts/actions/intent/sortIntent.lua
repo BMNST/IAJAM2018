@@ -80,12 +80,14 @@ function handleIntentions(intentions)
     end
     sortIntentions(newIntentions)
     local newestIntentions = {}
+    local targets = {}
     for k, v in ipairs(newIntentions) do
         if v.action ~= "move" then
             newestIntentions[#newestIntentions + 1] = v
         else
             local newP = { x = v.entity.position.x + v.entity.behavior.actions.move.x, y = v.entity.position.y + v.entity.behavior.actions.move.y }
-            if scripts.systems.collision.mapCollision(newP, true, v.entity.behavior.actions.move) then
+            if scripts.systems.collision.mapCollision(newP, true, v.entity.behavior.actions.move) and not targets[newP.x..":"..newP.y] then
+                targets[newP.x..":"..newP.y] = true
                 newestIntentions[#newestIntentions + 1] = v
             else
                 v.entity.behavior.actions.move = nil
