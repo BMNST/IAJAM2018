@@ -19,5 +19,4 @@ a("openDoor",
 a("closeDoor",
     function(a, intentions)
         scripts.actions.startActions.openCloseDoor(a, false, intentions)
-        print("ICI")
     end)

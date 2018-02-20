@@ -8,7 +8,6 @@
 
 return function(entity, args, intentions)
     -- args: 1 for right, -1 for left.
-    print(args)
     local c = (entity.behavior and entity.behavior.actions) or {}
     c.openCloseDoor = args
     entity.behavior = { actions = c, startTime = 0.03, time = 0.03 }

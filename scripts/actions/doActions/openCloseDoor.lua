@@ -7,10 +7,6 @@
 --
 
 return function(a, args)
-    pprint("HERE")
-    pprint("HERE")
-    pprint("HERE")
-    print("HERE", args)
     if a.open and not a.trapdoor then
         -- check if it can close
         for _, v in pairs(F.movingBlock) do
@@ -20,7 +16,6 @@ return function(a, args)
         end
     end
     a.open = args
-    print(a.open, a.color.B)
     if a.open then
         a.color.B = 128
         a.tileSpriteName = "openDoor"

@@ -20,7 +20,6 @@ local function checkDir(obj, z, dir)
         if not o then
             return true
         end
-        print("A")
         return not (o.x == dir.x and o.y == dir.y)
     end
     if not z then
