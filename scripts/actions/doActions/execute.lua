@@ -20,7 +20,7 @@ return function(object, action, intentions)
 
     local behave = object.behavior
 
-    if (behave.actions[action]) then
+    if (behave.actions[action]) ~= nil then
         scripts.actions.doActions[ACTS[action]](object, (behave.actions[action]), intentions)
     end
     object.behavior.actions[action] = nil

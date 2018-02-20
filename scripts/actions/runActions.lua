@@ -13,8 +13,11 @@ require "scripts.actions.toggleLaser"
 
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, args)
+    print("A")
     local color, intentions = unpack(args)
     if type(object[color]) == "string" then
+        print(object[color])
+
         ACTIONLOOKUPLIST[object[color]](object, intentions)
     else
         for k, v in ipairs(object[color]) do
