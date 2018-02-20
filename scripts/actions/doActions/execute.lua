@@ -19,9 +19,7 @@ ACTS.turnOnOffLaser = "turnOnOffLaser"
 return function(object, action, intentions)
 
     local behave = object.behavior
-    if behave == nil then
-        pprint(object)
-    end
+
     object.behavior = nil
     core.filter.update(object)
     if (behave.actions[action]) then

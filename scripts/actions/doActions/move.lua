@@ -6,6 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+COLORSINUSE = {}
 core.getTile = function(position, list)
     for k, v in pairs(list) do
         if v.position.x == position.x and v.position.y == position.y then
@@ -16,7 +17,6 @@ core.getTile = function(position, list)
 end
 
 return function(entity, args, intentions)
-    local executeColor = scripts.actions.runActions
 
     local newPosition = { x = entity.position.x + args.x, y = entity.position.y + args.y }
     if not scripts.systems.collision.mapCollision(newPosition) then
@@ -28,8 +28,8 @@ return function(entity, args, intentions)
 
     local tile = core.getTile(entity.position, F.tiles)
     if tile then
-        print(intentions)
-        executeColor(tile.tileColor, intentions)
+        print("A", tile.tileColor)
+        COLORSINUSE[tile.tileColor] = tile.tileColor
     end
 
     local tile = core.getTile(entity.position, F.endNode)

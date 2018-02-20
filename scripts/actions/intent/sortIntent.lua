@@ -53,12 +53,18 @@ function addIntentions(intention, intentions)
 end
 
 function handleIntentions(intentions)
-    local newIntentions = {}
+    local executeColor = scripts.actions.runActions
 
+    local newIntentions = {}
+    COLORSINUSE = {}
     local sortedIntentions = sortIntentions(intentions)
 
     for k,v in ipairs(intentions) do
         scripts.actions.doActions.execute(v.entity, v.action, newIntentions)
+    end
+    for k,v in pairs(COLORSINUSE) do
+        print(k)
+        executeColor(k, newIntentions)
     end
 
     return newIntentions
