@@ -78,6 +78,20 @@ function handleIntentions(intentions)
     for k, v in pairs(COLORSINUSE) do
         executeColor(k, newIntentions)
     end
-
-    return newIntentions
+    sortIntentions(newIntentions)
+    local newestIntentions = {}
+    for k, v in ipairs(newIntentions) do
+        if v.action ~= "move" then
+            newestIntentions[#newestIntentions + 1] = v
+        else
+            local newP = { x = v.entity.position.x + v.entity.behavior.actions.move.x, y = v.entity.position.y + v.entity.behavior.actions.move.y }
+            if scripts.systems.collision.mapCollision(newP, true, v.entity.behavior.actions.move) then
+                newestIntentions[#newestIntentions + 1] = v
+            else
+                v.entity.behavior.actions.move = nil
+                core.filter.update(v.entity)
+            end
+        end
+    end
+    return newestIntentions
 end
