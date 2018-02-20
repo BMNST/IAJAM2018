@@ -18,15 +18,16 @@ ACTS.turnOnOffLaser = "turnOnOffLaser"
 
 return function(object, action, intentions)
 
-    local behave = object.behavior
-
-    if (behave.actions[action]) ~= nil then
-        scripts.actions.doActions[ACTS[action]](object, (behave.actions[action]), intentions)
-    end
+    local behave = object.behavior.actions[action]
     object.behavior.actions[action] = nil
     if table.empty(object.behavior.actions) then
         object.behavior = nil
     end
     core.filter.update(object)
+
+    if behave ~= nil then
+        scripts.actions.doActions[ACTS[action]](object, behave, intentions)
+    end
+
 end
 

@@ -79,6 +79,8 @@ function ctx:keypressed(key, scancode, isrepeat)
 
     if not isrepeat then
         if love.keyboard.isDown("r") then
+            INTENTIONS={}
+            TIMER = -0.01
             scripts.levels.loadLevel(LEVEL)
         end
 

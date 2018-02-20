@@ -7,7 +7,7 @@ LEVELS = { "hungover", "painkillers", "trapDoors", "cubeTransporter", "turretLev
 DEBUG = true
 INTENTIONS = {}
 TIMER = -0.01
-MAXTIMER = 0.02
+MAXTIMER = 0.05
 
 function NEXTLEVEL()
     for i = 1, #LEVELS - 1 do

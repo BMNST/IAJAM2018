@@ -80,7 +80,6 @@ function handleIntentions(intentions)
 
     for k, v in pairs(COLORSINUSE) do
         executeColor(k, newIntentions)
-        print(k)
     end
 
     return newIntentions
