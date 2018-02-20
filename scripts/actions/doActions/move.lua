@@ -20,7 +20,6 @@ return function(entity, args, intentions)
 
     local newPosition = { x = entity.position.x + args.x, y = entity.position.y + args.y }
     if not scripts.systems.collision.mapCollision(newPosition) then
-        print("UNWALKABLE2")
         return
     end
 
@@ -43,7 +42,6 @@ return function(entity, args, intentions)
         if entity == GETPLAYER() then
             -- death code
         else
-            print("DESTROY")
             core.entity.remove(entity)
         end
     end

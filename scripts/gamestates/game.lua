@@ -79,7 +79,7 @@ function ctx:keypressed(key, scancode, isrepeat)
 
     if not isrepeat then
         if love.keyboard.isDown("r") then
-            INTENTIONS={}
+            INTENTIONS = {}
             TIMER = -0.01
             scripts.levels.loadLevel(LEVEL)
         end
@@ -94,15 +94,19 @@ function ctx:keypressed(key, scancode, isrepeat)
 
         if love.keyboard.isDown("w") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1, orientation = 1 }, INTENTIONS)
+            print("w")
             if a then TIMER = MAXTIMER end
         elseif love.keyboard.isDown("a") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0, orientation = 4 }, INTENTIONS)
+            print("a")
             if a then TIMER = MAXTIMER end
         elseif love.keyboard.isDown("s") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 }, INTENTIONS)
+            print("s")
             if a then TIMER = MAXTIMER end
         elseif love.keyboard.isDown("d") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 }, INTENTIONS)
+            print("d")
             if a then TIMER = MAXTIMER end
         end
     end

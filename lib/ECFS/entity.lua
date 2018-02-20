@@ -6,7 +6,6 @@ local unregisters = core.system.unregisters
 core.entity._stack = { {} }
 
 core.entity.add = function(ent, ...)
-    if ent.player then pprint(ent) end
     local frame = core.entity._stack[#core.entity._stack]
     frame[ent] = ent
 
