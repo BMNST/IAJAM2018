@@ -29,7 +29,6 @@ local turretFunc = function(entity, intentions)
             return
         end
         if player.position.x == loc.x and player.position.y == loc.y then
-            print("YOU HAVE DIED")
             scripts.actions.startActions.death(player, nil, intentions)
         end
     end

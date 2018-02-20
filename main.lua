@@ -38,8 +38,11 @@ SQUARESIZE = 32
 MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load(arg)
-    if arg[2] == "DEBUG" then
-        require "test"
+    if    os.getenv("TEST") ~= nil or arg[2] == "TEST" then
+        local lovetest = require "lib/test/lovetest"
+        local tc_outputter = require "lib/test/outputters/teamcity"
+        lovetest.run(tc_outputter)
+
         love.event.quit( )
         return
     end

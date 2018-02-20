@@ -3,6 +3,7 @@ local function RUNTEST(filename, str)
     INTENTIONS = {}
 
     scripts.levels.loadLevel(filename)
+
     local i = 0
     local cycles = 10000
     while i <= #str do
