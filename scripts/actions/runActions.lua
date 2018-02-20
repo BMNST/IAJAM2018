@@ -12,19 +12,22 @@ require "scripts.actions.rotateAction"
 require "scripts.actions.toggleLaser"
 
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
-function runSingleAction(object, color)
+function runSingleAction(object, args)
+    local color, intentions = unpack(args)
+    print(intentions)
     if type(object[color]) == "string" then
-        ACTIONLOOKUPLIST[object[color]](object)
+        ACTIONLOOKUPLIST[object[color]](object, intentions)
     else
         for k, v in ipairs(object[color]) do
-            ACTIONLOOKUPLIST[v](object)
+            ACTIONLOOKUPLIST[v](object, intentions)
         end
     end
 end
 
 -- Run actions for certain color.
-return function(color)
+return function(color, intentions)
     _G["FLASH" .. color] = 0.1
-    core.run(color, runSingleAction, color)
+    print(intentions)
+    core.run(color, runSingleAction, {color, intentions})
 end
 

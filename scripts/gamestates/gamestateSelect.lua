@@ -3,20 +3,7 @@ local ctx = GS.new()
 local toLevel = true
 
 local order = {
-    { cutscene = true },
-    { wait = true },
-    { cutscene = true },
-    { level = "hungover" },
-    { cutscene = true },
-    { level = "painkillers" },
-    { cutscene = true },
-    { level = "trapDoors" },
-    { level = "cubeTransporter" },
-    { cutscene = true },
-    { level = "stoppingLasers" },
-    { cutscene = true },
-    { level = "rainbowCookie" },
-    { cutscene = true },
+
     { level = "disco" },
     { cutscene = true },
     { level = "turretLevel" },

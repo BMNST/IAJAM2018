@@ -11,10 +11,10 @@ ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 
 
 local a = function(str, func) ACTIONLOOKUPLIST[str] = func end
-a("rotateLeft", function(a)
-    scripts.actions.startActions.startRotate(a, -1)
+a("rotateLeft", function(a, intentions)
+    scripts.actions.startActions.startRotate(a, -1, intentions)
 end)
 
-a("rotateRight", function(a)
-    scripts.actions.startActions.startRotate(a, 1)
+a("rotateRight", function(a, intentions)
+    scripts.actions.startActions.startRotate(a, 1, intentions)
 end)

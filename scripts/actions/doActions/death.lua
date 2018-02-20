@@ -9,4 +9,5 @@
 
 return function(object)
     scripts.levels.loadLevel(LEVEL)
+    TIMER = 2
 end

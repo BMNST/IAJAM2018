@@ -16,12 +16,16 @@ ACTS.toggleLaser = "toggleLaser"
 ACTS.openCloseDoor = "openCloseDoor"
 ACTS.turnOnOffLaser = "turnOnOffLaser"
 
-return function(object)
+return function(object, action, intentions)
+
     local behave = object.behavior
+    if behave == nil then
+        pprint(object)
+    end
     object.behavior = nil
     core.filter.update(object)
-    for k, v in pairs(behave.actions) do
-        scripts.actions.doActions[ACTS[k]](object, v)
+    if (behave.actions[action]) then
+        scripts.actions.doActions[ACTS[action]](object, (behave.actions[action]), intentions)
     end
 end
 

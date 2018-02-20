@@ -5,7 +5,10 @@ require 'lib.ECFS'
 LEVELS = { "hungover", "painkillers", "trapDoors", "cubeTransporter", "turretLevel", "rainbowCookie", "credits" }
 
 DEBUG = true
-
+INTENTIONS = {}
+TIMER = 0
+MAXTIMER = 0.05
+COLORSSELECTED = {}
 function NEXTLEVEL()
     for i = 1, #LEVELS - 1 do
         if LEVELS[i] == LEVEL then

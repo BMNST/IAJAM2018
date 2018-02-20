@@ -15,7 +15,7 @@ core.getTile = function(position, list)
     return nil
 end
 
-return function(entity, args)
+return function(entity, args, intentions)
     local executeColor = scripts.actions.runActions
 
     local newPosition = { x = entity.position.x + args.x, y = entity.position.y + args.y }
@@ -25,9 +25,11 @@ return function(entity, args)
     end
 
     entity.position = newPosition
+
     local tile = core.getTile(entity.position, F.tiles)
     if tile then
-        executeColor(tile.tileColor)
+        print(intentions)
+        executeColor(tile.tileColor, intentions)
     end
 
     local tile = core.getTile(entity.position, F.endNode)
