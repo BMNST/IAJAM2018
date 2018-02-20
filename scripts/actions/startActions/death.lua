@@ -11,6 +11,8 @@ return function(entity, args, intentions)
     c.death = true
     entity.behavior = { actions = c, startTime = 2, time = 2 }
     core.filter.update(entity)
-    addIntentions({entity = entity, action = "death"}, intentions)
+    addIntentions({ entity = entity, action = "death" }, intentions)
     TIMER = 2
+    MAXTIMER = 2
+    INTENTIONS = { { entity = GETPLAYER {}, action = "death" } }
 end

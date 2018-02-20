@@ -8,7 +8,7 @@ DEBUG = true
 INTENTIONS = {}
 TIMER = -0.01
 MAXTIMER = 0.05
-
+CMAX = 0.05
 function NEXTLEVEL()
     for i = 1, #LEVELS - 1 do
         if LEVELS[i] == LEVEL then

@@ -10,4 +10,7 @@
 return function(object)
     scripts.levels.loadLevel(LEVEL)
     TIMER = -0.01
+    MAXTIMER = CMAX
+
+    INTENTIONS = {}
 end

@@ -17,10 +17,15 @@ ACTS.openCloseDoor = "openCloseDoor"
 ACTS.turnOnOffLaser = "turnOnOffLaser"
 
 return function(object, action, intentions)
-
+    if not object.behavior then
+        print(action..":FAILED")
+        return
+    end
     local behave = object.behavior.actions[action]
+
     object.behavior.actions[action] = nil
     if table.empty(object.behavior.actions) then
+
         object.behavior = nil
     end
     core.filter.update(object)
@@ -28,6 +33,5 @@ return function(object, action, intentions)
     if behave ~= nil then
         scripts.actions.doActions[ACTS[action]](object, behave, intentions)
     end
-
 end
 

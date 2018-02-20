@@ -20,12 +20,15 @@ function ctx:update(dt)
     end
     MAP:update(dt)
     if not table.empty(INTENTIONS) then
+        if TIMER >= 0 then
         TIMER = TIMER - dt
+        end
         if TIMER < 0 then
             INTENTIONS = handleIntentions(INTENTIONS)
             if not table.empty(INTENTIONS) then
                 if TIMER < 0 then
-                    TIMER = MAXTIMER
+                    TIMER = CMAX
+                    MAXTIMER = CMAX
                 end
             end
 

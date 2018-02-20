@@ -8,6 +8,7 @@
 
 --  closeDoor = <function 1>,
 local aOrder = {}
+aOrder.death = 0
 aOrder.move = 1
 
 aOrder.openCloseDoor = 5
@@ -20,6 +21,7 @@ aOrder.toggleLaser = 13
 aOrder.turnOnOffLaser = 15
 -- Intent: {entity = entity, action = #name}
 local function sorter(a, b)
+    print(a.action, b.action)
     if a.action ~= b.action then
         return aOrder[a.action] < aOrder[b.action]
     end
@@ -29,26 +31,22 @@ local function sorter(a, b)
         local bx = b.entity.behavior.actions.move.x
         local by = b.entity.behavior.actions.move.y
 
-        local az = ax * bx + ay * by
-        if az == 1 then
-            if ax == 1 then
-                return a.entity.position.x > b.entity.position.x
-            end
-            if ax == -1 then
-                return a.entity.position.x < b.entity.position.x
-            end
-            if ay == 1 then
-                if a.entity.position.x ~= b.entity.position.x then
-                    return a.entity.position.x > b.entity.position.x
-                end
-                return a.entity.position.y > b.entity.position.y
-            end
-            if ay == -1 then
-                if a.entity.position.x ~= b.entity.position.x then
-                    return a.entity.position.x > b.entity.position.x
-                end
-                return a.entity.position.y <= b.entity.position.y
-            end
+        local az = ax * 2 + ay
+        local bz = bx * 2 + by
+        if az ~= bz then
+            return az > bz
+        end
+        if ax == 1 then
+            return a.entity.position.x > b.entity.position.x
+        end
+        if ax == -1 then
+            return a.entity.position.x < b.entity.position.x
+        end
+        if ay == 1 then
+            return a.entity.position.y > b.entity.position.y
+        end
+        if ay == -1 then
+            return a.entity.position.y < b.entity.position.y
         end
     end
 
