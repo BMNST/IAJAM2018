@@ -23,10 +23,11 @@ function ctx:update(dt)
         TIMER = TIMER - dt
         if TIMER < 0 then
             INTENTIONS = handleIntentions(INTENTIONS)
-            if TIMER < 0 then
-                TIMER = MAXTIMER
+            if not table.empty(INTENTIONS) then
+                if TIMER < 0 then
+                    TIMER = MAXTIMER
+                end
             end
-
 
             if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
                 scripts.actions.playerDeathCheck(INTENTIONS)
@@ -84,24 +85,23 @@ function ctx:keypressed(key, scancode, isrepeat)
         --        if love.keyboard.isDown("escape") then
         --            GS.pop()
         --        end
-        if not table.empty(INTENTIONS) then
+        if not table.empty(INTENTIONS) or TIMER >= 0 then
             return
         end
 
-        if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
-            if love.keyboard.isDown("w") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1, orientation = 1 }, INTENTIONS)
-                TIMER = MAXTIMER
-            elseif love.keyboard.isDown("a") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0, orientation = 4 }, INTENTIONS)
-                TIMER = MAXTIMER
-            elseif love.keyboard.isDown("s") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 }, INTENTIONS)
-                TIMER = MAXTIMER
-            elseif love.keyboard.isDown("d") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 }, INTENTIONS)
-                TIMER = MAXTIMER
-            end
+
+        if love.keyboard.isDown("w") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1, orientation = 1 }, INTENTIONS)
+            if a then TIMER = MAXTIMER end
+        elseif love.keyboard.isDown("a") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0, orientation = 4 }, INTENTIONS)
+            if a then TIMER = MAXTIMER end
+        elseif love.keyboard.isDown("s") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 }, INTENTIONS)
+            if a then TIMER = MAXTIMER end
+        elseif love.keyboard.isDown("d") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 }, INTENTIONS)
+            if a then TIMER = MAXTIMER end
         end
     end
 end

@@ -20,10 +20,13 @@ return function(object, action, intentions)
 
     local behave = object.behavior
 
-    object.behavior = nil
-    core.filter.update(object)
     if (behave.actions[action]) then
         scripts.actions.doActions[ACTS[action]](object, (behave.actions[action]), intentions)
     end
+    object.behavior.actions[action] = nil
+    if table.empty(object.behavior.actions) then
+        object.behavior = nil
+    end
+    core.filter.update(object)
 end
 

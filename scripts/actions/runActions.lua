@@ -14,7 +14,6 @@ require "scripts.actions.toggleLaser"
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, args)
     local color, intentions = unpack(args)
-    print(intentions)
     if type(object[color]) == "string" then
         ACTIONLOOKUPLIST[object[color]](object, intentions)
     else
@@ -27,7 +26,6 @@ end
 -- Run actions for certain color.
 return function(color, intentions)
     _G["FLASH" .. color] = 0.1
-    print(intentions)
     core.run(color, runSingleAction, {color, intentions})
 end
 

@@ -7,6 +7,10 @@
 --
 
 return function(a, args)
+    pprint("HERE")
+    pprint("HERE")
+    pprint("HERE")
+    print("HERE", args)
     if a.open and not a.trapdoor then
         -- check if it can close
         for _, v in pairs(F.movingBlock) do

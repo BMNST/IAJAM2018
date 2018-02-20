@@ -20,7 +20,7 @@ return function(entity, args, intentions)
 
     local newPosition = { x = entity.position.x + args.x, y = entity.position.y + args.y }
     if not scripts.systems.collision.mapCollision(newPosition) then
-        print("UNWALKABLE")
+        print("UNWALKABLE2")
         return
     end
 
@@ -28,7 +28,6 @@ return function(entity, args, intentions)
 
     local tile = core.getTile(entity.position, F.tiles)
     if tile then
-        print("A", tile.tileColor)
         COLORSINUSE[tile.tileColor] = tile.tileColor
     end
 

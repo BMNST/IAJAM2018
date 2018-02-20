@@ -9,47 +9,62 @@
 --  closeDoor = <function 1>,
 local aOrder = {}
 aOrder.move = 1
-aOrder.move = 2
-aOrder.move = 3
-aOrder.move = 4
-aOrder.openDoor = 5
-aOrder.print = 6
-aOrder.resetRotation1 = 7
-aOrder.resetRotation2 = 8
-aOrder.resetRotation3 = 9
-aOrder.resetRotation4 = 10
-aOrder.rotate = 11
 
-aOrder.toggleDoor = 13
-aOrder.toggleLaser = 14
-aOrder.turnOffLaser = 15
-aOrder.turnOnLaser = 16
+aOrder.openCloseDoor = 5
+aOrder.print = 6
+
+aOrder.rotate = 11
+aOrder.rotateTo = 11
+aOrder.toggleDoor = 12
+aOrder.toggleLaser = 13
+aOrder.turnOnOffLaser = 15
 -- Intent: {entity = entity, action = #name}
 local function sorter(a, b)
-    print(a.action, b.action)
     if a.action ~= b.action then
         return aOrder[a.action] < aOrder[b.action]
     end
-    if aOrder[a.action] == 2 or aOrder[a.action] == 4 then
-        if a.entity.position.x ~= b.entity.position.x then
-            return b.entity.position.x < a.entity.position.x
+    if a.action == "move" then
+        local ax = a.entity.behavior.actions.move.x
+        local ay = a.entity.behavior.actions.move.y
+        local bx = b.entity.behavior.actions.move.x
+        local by = b.entity.behavior.actions.move.y
+
+        local az = ax * bx + ay * by
+        if az == 1 then
+            if ax == 1 then
+                return a.entity.position.x > b.entity.position.x
+            end
+            if ax == -1 then
+                return a.entity.position.x < b.entity.position.x
+            end
+            if ay == 1 then
+                if a.entity.position.x ~= b.entity.position.x then
+                    return a.entity.position.x > b.entity.position.x
+                end
+                return a.entity.position.y > b.entity.position.y
+            end
+            if ay == -1 then
+                if a.entity.position.x ~= b.entity.position.x then
+                    return a.entity.position.x > b.entity.position.x
+                end
+                return a.entity.position.y <= b.entity.position.y
+            end
         end
-        return b.entity.position.y < a.entity.position.y
-    end
-    if a.entity.position.x ~= b.entity.position.x then
-        return a.entity.position.x < b.entity.position.x
     end
 
-    return a.entity.position.y < b.entity.position.y
+    if a.entity.position.x ~= b.entity.position.x then
+        return a.entity.position.x > b.entity.position.x
+    end
+
+    return a.entity.position.y > b.entity.position.y
 end
 
 function sortIntentions(intentions)
     table.sort(intentions, sorter)
-
 end
 
 function addIntentions(intention, intentions)
-    intentions[#intentions+1] = intention
+    intentions[#intentions + 1] = intention
 end
 
 function handleIntentions(intentions)
@@ -57,13 +72,13 @@ function handleIntentions(intentions)
 
     local newIntentions = {}
     COLORSINUSE = {}
-    local sortedIntentions = sortIntentions(intentions)
+    sortIntentions(intentions)
 
-    for k,v in ipairs(intentions) do
+    for k, v in ipairs(intentions) do
         scripts.actions.doActions.execute(v.entity, v.action, newIntentions)
     end
-    for k,v in pairs(COLORSINUSE) do
-        print(k)
+
+    for k, v in pairs(COLORSINUSE) do
         executeColor(k, newIntentions)
     end
 

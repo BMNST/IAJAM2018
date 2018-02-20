@@ -39,7 +39,7 @@ local checkTrapDoors = function(entity, intentions)
     local p = GETPLAYER()
     if entity.position.x == p.position.x and entity.position.y == p.position.y and not entity.open then
 
-        scripts.actions.startActions.death(p, intentions)
+        scripts.actions.startActions.death(p, nil, intentions)
     end
 end
 return function(intentions)
