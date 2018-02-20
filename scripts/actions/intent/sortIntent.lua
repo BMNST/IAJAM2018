@@ -21,7 +21,6 @@ aOrder.toggleLaser = 13
 aOrder.turnOnOffLaser = 15
 -- Intent: {entity = entity, action = #name}
 local function sorter(a, b)
-    print(a.action, b.action)
     if a.action ~= b.action then
         return aOrder[a.action] < aOrder[b.action]
     end
