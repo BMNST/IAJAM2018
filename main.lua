@@ -18,6 +18,7 @@ function NEXTLEVEL()
     end
     return LEVEL
 end
+
 function GETLEVELID()
     for i = 1, #LEVELS do
         if LEVELS[i] == LEVEL then
@@ -35,14 +36,14 @@ end
 
 require 'lib.load_all_scripts'
 SQUARESIZE = 32
-
 function love.load(arg)
-    if    os.getenv("TEST") ~= nil or arg[2] == "TEST" then
+    HEADLESS = ({ love.window.getMode() })[1] == 800
+    if os.getenv("TEST") ~= nil or arg[2] == "TEST" then
         local lovetest = require "lib/test/lovetest"
-        local tc_outputter = require "lib/test/outputters/teamcity"
+        local tc_outputter = require "lib/test/outputters/basicreporter"
         lovetest.run(tc_outputter)
 
-        love.event.quit( )
+        love.event.quit()
         return
     end
     MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")

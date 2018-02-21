@@ -46,7 +46,7 @@ end
 
 -- Cache images in main STI module
 function utils.cache_image(sti, path, image)
-    if not love.window.isCreated() then return end
+    if HEADLESS then return end
     image = image or love.graphics.newImage(path)
     image:setFilter("nearest", "nearest")
     sti.cache[path] = image
@@ -195,7 +195,7 @@ function utils.pixel_function(_, _, r, g, b, a)
 end
 
 function utils.fix_transparent_color(tileset, path)
-    if not love.window.isCreated() then return end
+    if HEADLESS then return end
     tileset.image = love.graphics.newImage(path)
 
     if tileset.transparentcolor then

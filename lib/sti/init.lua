@@ -73,8 +73,9 @@ function Map:init(path, plugins, ox, oy)
     if type(plugins) == "table" then
         self:loadPlugins(plugins)
     end
-
-    self:resize()
+    if not HEADLESS then
+        self:resize()
+    end
     self.objects = {}
     self.tiles = {}
     self.tileInstances = {}
@@ -99,7 +100,7 @@ function Map:init(path, plugins, ox, oy)
         if lg.isCreated then
             local formatted_path = utils.format_path(path .. tileset.image)
 
-            if not STI.cache[formatted_path] then
+            if not STI.cache[formatted_path] and not HEADLESS then
                 utils.fix_transparent_color(tileset, formatted_path)
                 utils.cache_image(STI, formatted_path, tileset.image)
             else
@@ -170,9 +171,9 @@ function Map:setTiles(index, tileset, gid)
                     end
                 end
             end
-            local a = nil
-            if love.window.isCreated() then
-                a = quad(quadX, quadY,
+            local q
+            if not HEADLESS then
+                q = quad(quadX, quadY,
                     tileW, tileH,
                     imageW, imageH)
             end
@@ -180,7 +181,7 @@ function Map:setTiles(index, tileset, gid)
                 id = id,
                 gid = gid,
                 tileset = index,
-                quad = a,
+                quad = q,
                 properties = properties or {},
                 terrain = terrain,
                 animation = animation,
@@ -412,14 +413,13 @@ end
 function Map:addNewLayerTile(layer, tile, x, y)
     local tileset = tile.tileset
     local image = self.tilesets[tile.tileset].image
-
-    if  love.window.isCreated() then
+    if not HEADLESS then
     layer.batches[tileset] = layer.batches[tileset]
             or lg.newSpriteBatch(image, layer.width * layer.height)
-
+    end
     local batch = layer.batches[tileset]
     local tileX, tileY = self:getLayerTilePosition(layer, tile, x, y)
-    end
+
     local tab = {
         layer = layer,
         gid = tile.gid,
@@ -853,14 +853,13 @@ end
 -- @param w The new width of the drawable area (in pixels)
 -- @param h The new Height of the drawable area (in pixels)
 function Map:resize(w, h)
+
     if lg.isCreated then
         w = w or lg.getWidth()
         h = h or lg.getHeight()
 
-        if love.window.isCreated() then
-            self.canvas = lg.newCanvas(w, h)
-            self.canvas:setFilter("nearest", "nearest")
-        end
+        self.canvas = lg.newCanvas(w, h)
+        self.canvas:setFilter("nearest", "nearest")
     end
 end
 
