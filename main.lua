@@ -35,7 +35,6 @@ end
 
 require 'lib.load_all_scripts'
 SQUARESIZE = 32
-MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load(arg)
     if    os.getenv("TEST") ~= nil or arg[2] == "TEST" then
@@ -46,6 +45,8 @@ function love.load(arg)
         love.event.quit( )
         return
     end
+    MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
+
     local ass = love.audio.newSource("assets/music/spaceisdark.ogg")
     ass:setLooping(true)
     ass:play()

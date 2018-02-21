@@ -170,14 +170,17 @@ function Map:setTiles(index, tileset, gid)
                     end
                 end
             end
-
+            local a = nil
+            if love.window.isCreated() then
+                a = quad(quadX, quadY,
+                    tileW, tileH,
+                    imageW, imageH)
+            end
             local tile = {
                 id = id,
                 gid = gid,
                 tileset = index,
-                quad = quad(quadX, quadY,
-                    tileW, tileH,
-                    imageW, imageH),
+                quad = a,
                 properties = properties or {},
                 terrain = terrain,
                 animation = animation,
@@ -410,12 +413,13 @@ function Map:addNewLayerTile(layer, tile, x, y)
     local tileset = tile.tileset
     local image = self.tilesets[tile.tileset].image
 
+    if  love.window.isCreated() then
     layer.batches[tileset] = layer.batches[tileset]
             or lg.newSpriteBatch(image, layer.width * layer.height)
 
     local batch = layer.batches[tileset]
     local tileX, tileY = self:getLayerTilePosition(layer, tile, x, y)
-
+    end
     local tab = {
         layer = layer,
         gid = tile.gid,
@@ -853,8 +857,10 @@ function Map:resize(w, h)
         w = w or lg.getWidth()
         h = h or lg.getHeight()
 
-        self.canvas = lg.newCanvas(w, h)
-        self.canvas:setFilter("nearest", "nearest")
+        if love.window.isCreated() then
+            self.canvas = lg.newCanvas(w, h)
+            self.canvas:setFilter("nearest", "nearest")
+        end
     end
 end
 

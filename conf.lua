@@ -7,7 +7,8 @@ love.conf = function(t)
         t.window.width = 84 * 16
         t.window.height = 48 * 16
         t.window.resizable = false
+        t.window.vsync = false
+
     end
     --t.console = true
-    t.window.vsync = false
 end
