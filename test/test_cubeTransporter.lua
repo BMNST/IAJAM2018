@@ -6,5 +6,4 @@ function test.test_success()
     assert_true(TESTSTATE.finished)
 end
 
-
 return test
