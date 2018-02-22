@@ -5,11 +5,11 @@
 -- Time: 20:20
 -- To change this template use File | Settings | File Templates.
 --
-require "scripts.actions.printAction"
-require "scripts.actions.toggleDoor"
-require "scripts.actions.moveAction"
-require "scripts.actions.rotateAction"
-require "scripts.actions.toggleLaser"
+require "scripts.actions.createActions.printAction"
+require "scripts.actions.createActions.toggleDoor"
+require "scripts.actions.createActions.moveAction"
+require "scripts.actions.createActions.rotateAction"
+require "scripts.actions.createActions.toggleLaser"
 
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 function runSingleAction(object, args)
