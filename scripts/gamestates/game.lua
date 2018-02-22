@@ -97,25 +97,27 @@ function ctx:keypressed(key, scancode, isrepeat)
 
         if love.keyboard.isDown("w") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1, orientation = 1 }, INTENTIONS)
-            print("w")
+            io.write("w")
             if a then TIMER = MAXTIMER end
         elseif love.keyboard.isDown("a") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0, orientation = 4 }, INTENTIONS)
-            print("a")
+            io.write("a")
             if a then TIMER = MAXTIMER end
         elseif love.keyboard.isDown("s") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 }, INTENTIONS)
-            print("s")
+            io.write("s")
             if a then TIMER = MAXTIMER end
         elseif love.keyboard.isDown("d") then
             local a = scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 }, INTENTIONS)
-            print("d")
+            io.write("d")
             if a then TIMER = MAXTIMER end
         end
     end
 end
 
 function ctx:leave()
+    print("")
+
     print('Leaving ' .. self.name)
 end
 
