@@ -4,7 +4,7 @@ require 'lib.helpers.core_funcs'
 require 'lib.ECFS'
 LEVELS = { "hungover", "painkillers", "trapDoors", "cubeTransporter", "turretLevel", "rainbowCookie", "credits" }
 
-DEBUG = true
+DEBUG = false
 
 function NEXTLEVEL()
     for i = 1, #LEVELS - 1 do
@@ -15,6 +15,7 @@ function NEXTLEVEL()
     end
     return LEVEL
 end
+
 function GETLEVELID()
     for i = 1, #LEVELS do
         if LEVELS[i] == LEVEL then
@@ -35,7 +36,7 @@ SQUARESIZE = 32
 MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load()
-    local ass = love.audio.newSource("assets/music/spaceisdark.ogg")
+    local ass = love.audio.newSource("assets/music/spaceisdark.ogg", 'stream')
     ass:setLooping(true)
     ass:play()
     DARKVIGNETTE = love.graphics.newImage("assets/tileset/black vignette.png")
