@@ -9,14 +9,14 @@
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 local a = function(str, func) ACTIONLOOKUPLIST[str] = func end
 a("toggleLaser",
-    function(a)
-        scripts.actions.startActions.toggleLaser(a)
+    function(a, intentions)
+        scripts.actions.startActions.toggleLaser(a, nil, intentions)
     end)
 a("turnOnLaser",
-    function(a)
-        scripts.actions.startActions.turnOnOffLaser(a, true)
+    function(a, intentions)
+        scripts.actions.startActions.turnOnOffLaser(a, true, intentions)
     end)
 a("turnOffLaser",
-    function(a)
-        scripts.actions.startActions.turnOnOffLaser(a, false)
+    function(a, intentions)
+        scripts.actions.startActions.turnOnOffLaser(a, false, intentions)
     end)

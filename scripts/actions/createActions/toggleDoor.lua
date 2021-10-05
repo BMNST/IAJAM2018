@@ -9,14 +9,14 @@
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 local a = function(str, func) ACTIONLOOKUPLIST[str] = func end
 a("toggleDoor",
-    function(a)
-        scripts.actions.startActions.toggleDoor(a)
+    function(a, intentions)
+        scripts.actions.startActions.toggleDoor(a, nil, intentions)
     end)
 a("openDoor",
-    function(a)
-        scripts.actions.startActions.openCloseDoor(a, true)
+    function(a, intentions)
+        scripts.actions.startActions.openCloseDoor(a, true, intentions)
     end)
 a("closeDoor",
-    function(a)
-        scripts.actions.startActions.openCloseDoor(a, false)
+    function(a, intentions)
+        scripts.actions.startActions.openCloseDoor(a, false, intentions)
     end)

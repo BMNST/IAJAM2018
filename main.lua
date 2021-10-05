@@ -6,6 +6,10 @@ LEVELS = { "hungover", "painkillers", "trapDoors", "cubeTransporter", "turretLev
 
 DEBUG = false
 
+INTENTIONS = {}
+TIMER = -0.01
+MAXTIMER = 0.05
+CMAX = 0.05
 function NEXTLEVEL()
     for i = 1, #LEVELS - 1 do
         if LEVELS[i] == LEVEL then
@@ -33,10 +37,21 @@ end
 
 require 'lib.load_all_scripts'
 SQUARESIZE = 32
-MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
+function love.load(arg)
+    HEADLESS = ({ love.window.getMode() })[1] == 800
+    if os.getenv("TEST") ~= nil or arg[2] == "TEST" then
+        local lovetest = require "lib/test/lovetest"
+        local tc_outputter = require "lib/test/outputters/basicreporter"
+        lovetest.run(tc_outputter)
+
+        love.event.quit()
+        return
+    end
+    MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load()
     local ass = love.audio.newSource("assets/music/spaceisdark.ogg", 'stream')
+
     ass:setLooping(true)
     ass:play()
     DARKVIGNETTE = love.graphics.newImage("assets/tileset/black vignette.png")

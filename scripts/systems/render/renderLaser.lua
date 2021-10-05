@@ -9,7 +9,7 @@
 return function(entity, args)
 
     if entity.behavior and entity.behavior.actions.rotate then
-        local t = 1 - entity.behavior.time / entity.behavior.startTime
+        local t = 1 - TIMER / MAXTIMER
         love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(1, 19), entity.position.x * SQUARESIZE + 16, entity.position.y * SQUARESIZE + 16, math.pi / 2 * (entity.orientation + t * entity.behavior.actions.rotate), 2, 2, 8, 8)
     else
         love.graphics.draw(MAPTEXTUREATLAS, scripts.systems.render.getQuad(1, 19), entity.position.x * SQUARESIZE + 16, entity.position.y * SQUARESIZE + 16, math.pi / 2 * (entity.orientation), 2, 2, 8, 8)

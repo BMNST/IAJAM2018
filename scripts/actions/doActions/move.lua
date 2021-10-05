@@ -6,6 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+COLORSINUSE = {}
 core.getTile = function(position, list)
     for k, v in pairs(list) do
         if v.position.x == position.x and v.position.y == position.y then
@@ -15,19 +16,18 @@ core.getTile = function(position, list)
     return nil
 end
 
-return function(entity, args)
-    local executeColor = scripts.actions.runActions
+return function(entity, args, intentions)
 
     local newPosition = { x = entity.position.x + args.x, y = entity.position.y + args.y }
     if not scripts.systems.collision.mapCollision(newPosition) then
-        print("UNWALKABLE")
         return
     end
 
     entity.position = newPosition
+
     local tile = core.getTile(entity.position, F.tiles)
     if tile then
-        executeColor(tile.tileColor)
+        COLORSINUSE[tile.tileColor] = tile.tileColor
     end
 
     local tile = core.getTile(entity.position, F.endNode)
@@ -42,7 +42,6 @@ return function(entity, args)
         if entity == GETPLAYER() then
             -- death code
         else
-            print("DESTROY")
             core.entity.remove(entity)
         end
     end
