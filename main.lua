@@ -4,7 +4,8 @@ require 'lib.helpers.core_funcs'
 require 'lib.ECFS'
 LEVELS = { "hungover", "painkillers", "trapDoors", "cubeTransporter", "turretLevel", "rainbowCookie", "credits" }
 
-DEBUG = true
+DEBUG = false
+
 INTENTIONS = {}
 TIMER = -0.01
 MAXTIMER = 0.05
@@ -48,7 +49,9 @@ function love.load(arg)
     end
     MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
-    local ass = love.audio.newSource("assets/music/spaceisdark.ogg")
+function love.load()
+    local ass = love.audio.newSource("assets/music/spaceisdark.ogg", 'stream')
+
     ass:setLooping(true)
     ass:play()
     DARKVIGNETTE = love.graphics.newImage("assets/tileset/black vignette.png")
