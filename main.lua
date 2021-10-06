@@ -47,7 +47,9 @@ function love.load(arg)
         love.event.quit()
         return
     end
-    MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
+end
+
+MAPTEXTUREATLAS = love.graphics.newImage("assets/tileset/tileset.png")
 
 function love.load()
     local ass = love.audio.newSource("assets/music/spaceisdark.ogg", 'stream')
