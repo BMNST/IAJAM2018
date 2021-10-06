@@ -1,4 +1,4 @@
-#Collision
+# Collision
 Collision shape is tracked by the collision subcomponent.
 The collision component is supposed to have the following structure:
 

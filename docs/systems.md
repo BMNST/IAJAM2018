@@ -1,4 +1,4 @@
-#Systems
+# Systems
 A system is created by creating a new script file.
 
 This script file either create a local table, which it returns at the end, or just return a function. In the latter case, you shouldn't register the system.
