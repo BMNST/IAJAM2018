@@ -7,6 +7,6 @@
 --
 
 return function(x, y, orientation, laserOn, ember, purple, cyan, green, yellow)
-    core.entity.add({ position = { x = x, y = y }, orientation = orientation, laserOn = laserOn, isTurret = true, unwalkable = true, cyan = cyan, ember = ember, purple = purple, cyan = cyan, green = green, yellow = yellow })
+    core.entity.add({ position = { x = x, y = y }, orientation = orientation, laserOn = laserOn, isTurret = true, unwalkable = true, cyan = cyan, ember = ember, purple = purple, green = green, yellow = yellow })
 end
 
