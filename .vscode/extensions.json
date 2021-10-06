@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "koihik.vscode-lua-format",
+        "sumneko.lua",
+        "pixelwar.love2dsnippets",
+        "janw.love-launcher"
+    ]
+}
