@@ -13,4 +13,5 @@ return function()
     scripts.objects.door(24, 12, true, false, nil, "closeDoor")
     scripts.objects.door(24, 17, false, false, nil, "openDoor")
     scripts.objects.movingBlock(17, 8, "moveDown", nil, nil, "moveUp")
+
 end

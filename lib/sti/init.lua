@@ -148,6 +148,7 @@ function Map:groupAppendToList(layers, layer)
 	else
 		table.insert(layers, layer)
 	end
+
 end
 
 --- Load plugins
@@ -234,6 +235,7 @@ function Map:setTiles(index, tileset, gid)
 	end
 
 	return gid
+
 end
 
 --- Create Layers
@@ -968,7 +970,6 @@ function Map:resize(w, h)
 	if lg.isCreated then
 		w = w or lg.getWidth()
 		h = h or lg.getHeight()
-
 		self.canvas = lg.newCanvas(w, h)
 		self.canvas:setFilter("nearest", "nearest")
 	end

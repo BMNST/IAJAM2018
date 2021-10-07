@@ -24,7 +24,6 @@ return function()
     scripts.objects.trapDoor(26, 6, true, true, nil, nil, nil, nil, "toggleDoor")
     scripts.objects.trapDoor(18, 14, false, false, nil, nil, nil, nil, nil)
     scripts.objects.trapDoor(19, 15, false, true, nil, nil, nil, nil, nil)
-
     scripts.objects.movingBlock(24, 11, "moveUp", "moveLeft", "moveDown", "moveRight", nil)
     scripts.objects.movingBlock(10, 22, "moveUp", "moveLeft", "moveDown", "moveRight", nil)
 end

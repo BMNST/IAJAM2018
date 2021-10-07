@@ -1,4 +1,10 @@
 local ctx = GS.new()
+function table.empty(self)
+    for _, _ in pairs(self) do
+        return false
+    end
+    return true
+end
 
 function ctx:enter(from, level)
     print("Entered " .. self.name)
@@ -13,17 +19,27 @@ function ctx:update(dt)
         require("lib.lovebird").update()
     end
     MAP:update(dt)
-
-    for k, v in pairs(F.behaves) do
-        v.behavior.time = v.behavior.time - dt
-        if v.behavior.time < 0 then
-            scripts.actions.doActions.execute(v)
+    if not table.empty(INTENTIONS) then
+        if TIMER >= 0 then
+        TIMER = TIMER - dt
         end
+        if TIMER < 0 then
+            INTENTIONS = handleIntentions(INTENTIONS)
+            if not table.empty(INTENTIONS) then
+                if TIMER < 0 then
+                    TIMER = CMAX
+                    MAXTIMER = CMAX
+                end
+            end
+
+            if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
+                scripts.actions.playerDeathCheck(INTENTIONS)
+            end
+        end
+    else
+        -- handleInput
     end
 
-    if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
-        scripts.actions.playerDeathCheck()
-    end
     for k, v in ipairs({ "cyan", "green", "ember", "purple", "yellow" }) do
         if _G["FLASH" .. v] then
             _G["FLASH" .. v] = _G["FLASH" .. v] - dt
@@ -50,14 +66,14 @@ function ctx:draw()
     core.run("movingBlock", scripts.systems.render.renderMovingBlock, {})
 
 
-    scripts.systems.render.renderText.renderText("Controls: [MOVEMENT: WASD], [RESET: r]", { x = 80, y = 46.5*16}, 16)
+    scripts.systems.render.renderText.renderText("Controls: [MOVEMENT: WASD], [RESET: r]", { x = 80, y = 46.5 * 16 }, 16)
     scripts.systems.render.renderVignet()
 
     if (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
-        local a = 255 - 255 * GETPLAYER().behavior.time / GETPLAYER().behavior.startTime
-        love.graphics.setColor(0,0,0,a)
-        love.graphics.rectangle("fill", 0,0,84*16,48*16)
-        love.graphics.setColor(255,255,255,255)
+        local a = 255 - 255 * TIMER / 2
+        love.graphics.setColor(0, 0, 0, a)
+        love.graphics.rectangle("fill", 0, 0, 84 * 16, 48 * 16)
+        love.graphics.setColor(255, 255, 255, 255)
         scripts.systems.render.renderText.renderText("  #255/255/255/255#  You###255/255/255/255# have###255/000/000/255# DIED", { x = 320, y = 200 }, 50)
     end
 end
@@ -66,30 +82,42 @@ function ctx:keypressed(key, scancode, isrepeat)
 
     if not isrepeat then
         if love.keyboard.isDown("r") then
+            INTENTIONS = {}
+            TIMER = -0.01
             scripts.levels.loadLevel(LEVEL)
         end
-        
---        if love.keyboard.isDown("escape") then
---            GS.pop()
---        end
-        for k, v in pairs(F.behaves) do
+
+        --        if love.keyboard.isDown("escape") then
+        --            GS.pop()
+        --        end
+        if not table.empty(INTENTIONS) or TIMER >= 0 then
             return
         end
-        if not (GETPLAYER().behavior and GETPLAYER().behavior.actions.death) then
-            if love.keyboard.isDown("w") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1, orientation = 1 })
-            elseif love.keyboard.isDown("a") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0, orientation = 4 })
-            elseif love.keyboard.isDown("s") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 })
-            elseif love.keyboard.isDown("d") then
-                scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 })
-            end
+
+
+        if love.keyboard.isDown("w") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = -1, orientation = 1 }, INTENTIONS)
+            io.write("w")
+            if a then TIMER = MAXTIMER end
+        elseif love.keyboard.isDown("a") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = -1, y = 0, orientation = 4 }, INTENTIONS)
+            io.write("a")
+            if a then TIMER = MAXTIMER end
+        elseif love.keyboard.isDown("s") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = 0, y = 1, orientation = 3 }, INTENTIONS)
+            io.write("s")
+            if a then TIMER = MAXTIMER end
+        elseif love.keyboard.isDown("d") then
+            local a = scripts.actions.startActions.move(GETPLAYER(), { x = 1, y = 0, orientation = 2 }, INTENTIONS)
+            io.write("d")
+            if a then TIMER = MAXTIMER end
         end
     end
 end
 
 function ctx:leave()
+    print("")
+
     print('Leaving ' .. self.name)
 end
 

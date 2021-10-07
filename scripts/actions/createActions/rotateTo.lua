@@ -9,18 +9,18 @@
 ACTIONLOOKUPLIST = ACTIONLOOKUPLIST or {}
 local a = function(str, func) ACTIONLOOKUPLIST[str] = func end
 a("resetRotation1",
-    function(a)
-        scripts.actions.startActions.rotateTo(a, 1)
+    function(a, intentions)
+        scripts.actions.startActions.rotateTo(a, 1, intentions)
     end)
 a("resetRotation2",
-    function(a)
-        scripts.actions.startActions.rotateTo(a, 2)
+    function(a, intentions)
+        scripts.actions.startActions.rotateTo(a, 2, intentions)
     end)
 a("resetRotation3",
-    function(a)
-        scripts.actions.startActions.rotateTo(a, 3)
+    function(a, intentions)
+        scripts.actions.startActions.rotateTo(a, 3, intentions)
     end)
 a("resetRotation4",
-    function(a)
-        scripts.actions.startActions.rotateTo(a, 4)
+    function(a, intentions)
+        scripts.actions.startActions.rotateTo(a, 4, intentions)
     end)

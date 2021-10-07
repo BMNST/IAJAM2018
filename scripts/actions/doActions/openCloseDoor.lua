@@ -16,7 +16,6 @@ return function(a, args)
         end
     end
     a.open = args
-    print(a.open, a.color.B)
     if a.open then
         a.color.B = 128
         a.tileSpriteName = "openDoor"

@@ -25,7 +25,7 @@ return function()
     scripts.objects.turret(27, 5, 2, false, "turnOffLaser", "turnOnLaser", nil, nil, nil)
 
     local b = scripts.objects.movingBlock(43, 23, "moveRight", "moveUp", "moveLeft", "moveDown")
-    scripts.actions.startActions.move(b, { x = 1, y = 0 })
+    scripts.actions.startActions.move(b, { x = 1, y = 0 }, INTENTIONS)
 
 
 end

@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local turretFunc = function(entity)
+local turretFunc = function(entity, intentions)
     local player = GETPLAYER()
 
     local o = (entity.orientation - 1) % 4 + 1
@@ -29,21 +29,20 @@ local turretFunc = function(entity)
             return
         end
         if player.position.x == loc.x and player.position.y == loc.y then
-            print("YOU HAVE DIED")
-            scripts.actions.startActions.death(player)
+            scripts.actions.startActions.death(player, nil, intentions)
         end
     end
 end
 
-local checkTrapDoors = function(entity)
+local checkTrapDoors = function(entity, intentions)
     local p = GETPLAYER()
     if entity.position.x == p.position.x and entity.position.y == p.position.y and not entity.open then
 
-        scripts.actions.startActions.death(p)
+        scripts.actions.startActions.death(p, nil, intentions)
     end
 end
-return function()
-    core.run("turret", turretFunc, {})
-    core.run("trapdoor", checkTrapDoors, {})
+return function(intentions)
+    core.run("turret", turretFunc, intentions)
+    core.run("trapdoor", checkTrapDoors, intentions)
 end
 

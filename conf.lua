@@ -7,3 +7,4 @@ love.conf = function(t)
     --t.console = true
     t.window.vsync = false
 end
+
